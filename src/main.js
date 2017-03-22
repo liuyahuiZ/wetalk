@@ -5,8 +5,13 @@ import App from './App'
 import router from './router'
 import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
-// import './styles/common.scss'
+import '@/styles/common.scss'
+
+import MuseUI from 'muse-ui'
+import 'muse-ui/dist/muse-ui.css'
+
 Vue.use(Mint)
+Vue.use(MuseUI)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
