@@ -13,6 +13,8 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "dynamics.js": "^1.1.5",
+    "tween.js": "^16.6.0",
     "vue": "^2.2.2",
     "vue-router": "^2.2.0"
   },

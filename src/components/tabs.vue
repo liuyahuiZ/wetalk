@@ -14,7 +14,7 @@
          <router-link to="/second">
           <mt-cell title="page2">page2</mt-cell>
          </router-link>
-        <mt-cell v-for="n in 10" title="tab-container 1"></mt-cell>
+        <mt-cell v-for="n in 10" key=n title="tab-container 1"></mt-cell>
       </mt-tab-container-item>
       <mt-tab-container-item id="second">
         <colors ></colors>
@@ -24,11 +24,6 @@
       </mt-tab-container-item>
       <mt-tab-container-item id="forth">
         <surch ></surch>
-        <div style='width:100px;height:100px;'>
-          <circle :percent='percent2' :stroke-width=6 :trail-width=6 :stroke-color='strokeColor2' trail-color="#ececec">
-            <span :style="{color: strokeColor2}">%</span>
-          </circle>
-        </div>
       </mt-tab-container-item>
     </mt-tab-container>
     </div>
@@ -57,7 +52,6 @@
 <script>
 import Vue from 'vue'
 import { Tabbar, TabItem, TabContainer, TabContainerItem, Swipe, SwipeItem, Lazyload, Cell } from 'mint-ui'
-import circle from 'vux/dist/components/circle'
 import surch from './surch.vue'
 import colors from './colors.vue'
 import pictures from './pictures.vue'
@@ -70,7 +64,6 @@ Vue.component(TabItem.name, TabItem)
 Vue.component(TabContainer.name, TabContainer)
 Vue.component(TabContainerItem.name, TabContainerItem)
 Vue.component(Cell.name, Cell)
-Vue.component(circle)
 export default {
   ready () {
     console.log('123')

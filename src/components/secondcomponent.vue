@@ -14,27 +14,18 @@
       <mt-field label="邮箱" state="error"></mt-field>
       <mt-field label="邮箱" state="warning"></mt-field>
     </div>
-    <mu-paper>
-      <mu-bottom-nav :value="bottomNav" @change="handleChange">
-        <mu-bottom-nav-item value="recents" title="Recents" icon="restore"/>
-        <mu-bottom-nav-item value="favorites" title="Favorites" icon="favorite"/>
-        <mu-bottom-nav-item value="nearby" title="Nearby" icon="location_on"/>
-      </mu-bottom-nav>
-    </mu-paper>
+
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import {bottomNav, bottomNavItem} from 'muse-components/bottomNav'
 import teheader from './teheader.vue'
 import { Field, Cell } from 'mint-ui'
 import TWEEN from 'tween.js'
 
 Vue.component(Field.name, Field)
 Vue.component(Cell.name, Cell)
-Vue.component(bottomNav.name, bottomNav)
-Vue.component(bottomNavItem.name, bottomNavItem)
 export default {
   data () {
     return {
@@ -42,8 +33,7 @@ export default {
       topStatus: '',
       articles: [],
       number: 9999,
-      animatedNumber: 0,
-      bottomNav: 'recents'
+      animatedNumber: 0
     }
   },
   watch: {
@@ -64,9 +54,6 @@ export default {
     }
   },
   methods: {
-    handleChange (val) {
-      this.bottomNav = val
-    }
   },
   components: {
     teheader
