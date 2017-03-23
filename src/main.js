@@ -3,15 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Mint from 'mint-ui'
-import 'mint-ui/lib/style.css'
-import '@/styles/common.scss'
-
+import '@/styles/ionic.min.css'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
 
-Vue.use(Mint)
+import '@/styles/common.scss'
+
 Vue.use(MuseUI)
+Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -103,34 +103,34 @@ a{text-decoration: blink;}
 
 @keyframes bounce-in {
   0% {
-    transform: translateX(300px);
+    transform: translateY(800px);
   }
   100% {
-    transform: translateX(0px);
+    transform: translateY(0px);
   }
 }
 @keyframes bounce-out {
   0% {
-    transform: translateX(0px);
+    transform: translateY(0px);
   }
   100% {
-    transform: translateX(-300px);
+    transform: translateY(-800px);
   }
 }
 @keyframes pounce-in {
   0% {
-    transform: translateX(-10px);
+    transform: translateY(-10px);
   }
   100% {
-    transform: translateX(0px);
+    transform: translateY(0px);
   }
 }
 @keyframes pounce-out {
   0% {
-    transform: translateX(0px);
+    transform: translateY(0px);
   }
   100% {
-    transform: translateX(300px);
+    transform: translateY(800px);
   }
 }
 

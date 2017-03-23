@@ -1,9 +1,7 @@
 <template>
-  <div id="header" v-show="showbar">
+  <!--<div id="header" v-show="showbar">
     <div class="header is-fixd">
       <div class="header-left">
-        <!--<router-link to="/" slot="left"><i class="mintui mintui-back"></i>返回
-        </router-link>-->
         <div v-on:click="goback"><i class="mintui mintui-back"></i>返回</div>
       </div>
         <transition-group :name="slidName" tag="div" class="header-title relative" mode="out-in">
@@ -13,6 +11,51 @@
         </transition-group>
       <div class="header-right">...</div>
     </div>
+  </div>-->
+  <div>
+  <div class="fixed width-100 zindex-100 height-120 text-align-center ">
+        <div class="width-80 margin-auto box-flex text-align-center flex-direction-row flex-wrap flex-justify-center flex-items-center height-100">
+        <div class="flex-1 height-30 flex-self-center">
+            <span class="ion-navicon-round font-size-26" @click="openBottomSheet"></span>
+        </div>
+        <div class="flex-3 height-30 height-50 line-height-50 flex-direction-row flex-items-flex-start">
+            <div class="flex-2"><img class="height-100" src="../Img/logo_b.png" lazy="loaded"></div>
+        </div>
+        <div class="flex-1 height-30 bg-button-red flex-self-flex-start">5</div>
+        </div>
+    </div>
+    <mu-bottom-sheet :open="bottomSheet" @close="closeBottomSheet" >
+      <div class="line-height-50 text-align-right bg-333" @click="closeBottomSheet">
+          <span class="ion-close-round font-size-20 margin-right-5 textclolor-white"></span>
+      </div>
+      <ul class="list-all bg-333" @Click="closeBottomSheet">
+        <router-link to="/home">
+          <li class="line-height-50 text-align-center textclolor-white" @click="closeBottomSheet">
+              Home
+          </li>
+        </router-link>
+        <router-link to="/first">
+          <li class="line-height-50 text-align-center textclolor-white" @click="closeBottomSheet">
+              page1
+          </li>
+        </router-link>
+        <router-link to="/second">
+          <li class="line-height-50 text-align-center textclolor-white" @click="closeBottomSheet">
+                page2
+          </li>
+        </router-link>
+          <li class="line-height-50 text-align-center textclolor-white">12312312</li>
+      </ul>
+      <mu-list @itemClick="closeBottomSheet" class="bg-333">
+        <mu-sub-header>
+          请选择一个
+        </mu-sub-header>
+        <mu-list-item title="阴阳师"/>
+        <mu-list-item title="Inbox">
+            <mu-icon slot="left" value="inbox"/>
+        </mu-list-item>
+      </mu-list>
+    </mu-bottom-sheet>
   </div>
 </template>
 <script>
@@ -22,7 +65,8 @@ export default {
       author: 'Jinkey',
       focusStatus: true,
       title: [],
-      slidName: 'list'
+      slidName: 'list',
+      bottomSheet: false
     }
   },
   props: ['totitle', 'fromtitle', 'showbar', 'name'],
@@ -45,6 +89,12 @@ export default {
         status = {'status': false, 'index': 0}
       }
       return status
+    },
+    closeBottomSheet () {
+      this.bottomSheet = false
+    },
+    openBottomSheet () {
+      this.bottomSheet = true
     }
   },
   watch: {
@@ -81,7 +131,7 @@ export default {
 </script>
 <style>
 .page-header-main {
-  overflow: hidden;padding-top: 50px;min-height: 95vh;
+  overflow: hidden;margin-top: 120px;min-height: 95vh;
 }
 .page-content{
   overflow: hidden;min-height: 100vh;
@@ -123,21 +173,21 @@ export default {
 /*从右向左滑动*/
 @keyframes left-in {
   0% {
-    transform: translateX(270px);
+    transform: translateY(270px);
     opacity: 0;
   }
   100% {
-    transform: translateX(0px);
+    transform: translateY(0px);
     opacity: 1;
   }
 }
 @keyframes left-out {
   0% {
-    transform: translateX(0px);
+    transform: translateY(0px);
     opacity: 1;
   }
   100% {
-    transform: translateX(-270px);
+    transform: translateY(-270px);
     opacity: 0;
   }
 }
@@ -153,21 +203,21 @@ export default {
 /*从左向右滑动*/
 @keyframes right-in {
   0% {
-    transform: translateX(-270px);
+    transform: translateY(-270px);
     opacity: 0;
   }
   100% {
-    transform: translateX(0px);
+    transform: translateY(0px);
     opacity: 1;
   }
 }
 @keyframes right-out {
   0% {
-    transform: translateX(0px);
+    transform: translateY(0px);
     opacity: 1;
   }
   100% {
-    transform: translateX(270px);
+    transform: translateY(270px);
     opacity: 0;
   }
 }
