@@ -62,23 +62,6 @@
             <span class="flex-1 ion-social-dribbble-outline font-size-20 textclolor-white margin-right-3"></span>
         </div>
     </div>
-    
-    <mu-raised-button label="ditogglealog" @click="toggle(true)"/>
-    <mu-drawer :open="open" :docked="docked" @close="toggle()">
-      <mu-list @itemClick="docked ? '' : toggle()">
-        <mu-list-item title="Menu Item 1"/>
-        <mu-list-item title="Menu Item 2"/>
-        <mu-list-item title="Menu Item 3"/>
-        <mu-list-item v-if="docked" @click.native="open = false" title="Close"/>
-      </mu-list>
-    </mu-drawer>
-    
-    <mu-raised-button label="dialog" @click="opendialog"/>
-    <mu-dialog :open="dialog" title="Dialog" @close="close">
-      这是一个简单的弹出框123321
-      <mu-flat-button slot="actions" @click="close" primary label="取消"/>
-      <mu-flat-button slot="actions" primary @click="close" label="确定"/>
-    </mu-dialog>
 </div>
 </template>
 <script>
@@ -100,21 +83,11 @@ export default {
       let item = {thecolor: ''}
       this.colors.push(item)
     },
-    toggle (flag) {
-      this.open = !this.open
-      this.docked = !flag
-    },
     closeBottomSheet () {
       this.bottomSheet = false
     },
     openBottomSheet () {
       this.bottomSheet = true
-    },
-    opendialog () {
-      this.dialog = true
-    },
-    close () {
-      this.dialog = false
     },
     handleSelect (key, keyPath) {
       console.log(key, keyPath)

@@ -3,7 +3,7 @@ $DirectionList:top,left,right,bottom;
 a{text-decoration: none;color:#333;}
 a:link, a:visited{text-decoration: none;border:0;}
 /*font-size*/
-$font-size-list:7,8,9,10,12,16,20,22,26,40,50;
+$font-size-list:7,8,9,10,12,16,20,22,26,30,40,50;
 @each $fonts in $font-size-list{
 	.font-size-#{$fonts}{font-size:#{$fonts*10%};}
 }

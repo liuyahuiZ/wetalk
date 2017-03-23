@@ -2,17 +2,27 @@
   <div id="secondcomponent">
     <!--<teheader tirtle='second'></teheader>-->
     <div class="page-header-main">
-      <mt-field label="用户名" placeholder="请输入用户名"></mt-field>
-      <mt-field label="邮箱" placeholder="请输入邮箱" type="email"></mt-field>
-      <mt-field label="密码" placeholder="请输入密码" type="password"></mt-field>
-      <mt-field label="手机号" placeholder="请输入手机号" type="tel"></mt-field>
+      <div class="box-flex width-80 margin-auto margin-top-2 flex-direction-column flex-justify-center flex-items-center">
+        <div class="line-height-50 font-size-30">Say Hello</div>
+        <div class="line-height-30 font-size-22">- Drop me a line -</div>
+      </div>
+      <div class="box-flex width-80 margin-auto margin-top-2 flex-direction-column">
+        <div class="box-flex">
+          <div class="flex-1 padding-all"><el-input v-model="input" placeholder="请输入内容"></el-input></div>
+          <div class="flex-1 padding-all"><el-input v-model="input" placeholder="请输入内容"></el-input></div>
+        </div>
+        <div class="box-flex">
+          <div class="flex-1 padding-all"><el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="textarea"></el-input></div>
+        </div>
+        <div class="box-flex flex-justify-center flex-items-center">
+            <el-button type="primary" size="large">Send Message</el-button>
+        </div>
+      </div>
       <mt-cell :title="animatedNumber">
         <!--<img slot="icon" src="../assets/logo.png" width="24" height="24">-->
         <input class="input-all" v-model.number="number" type="number" step="20">
       </mt-cell>
-      <mt-field label="邮箱" state="success"></mt-field>
-      <mt-field label="邮箱" state="error"></mt-field>
-      <mt-field label="邮箱" state="warning"></mt-field>
+
     </div>
 
   </div>
@@ -33,7 +43,9 @@ export default {
       topStatus: '',
       articles: [],
       number: 9999,
-      animatedNumber: 0
+      animatedNumber: 0,
+      input: '',
+      textarea: ''
     }
   },
   watch: {

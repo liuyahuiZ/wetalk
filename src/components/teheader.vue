@@ -29,31 +29,40 @@
           <span class="ion-close-round font-size-20 margin-right-5 textclolor-white"></span>
       </div>
       <ul class="list-all bg-333" @Click="closeBottomSheet">
-        <router-link to="/home">
+        <router-link to="/">
           <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
               Home
           </li>
         </router-link>
         <router-link to="/first">
           <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
-              page1
+              My Work
           </li>
         </router-link>
-        <router-link to="/second">
+        <router-link to="/contact">
           <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
-                page2
+              My Shill
           </li>
         </router-link>
-          <li class="line-height-50 text-align-center textclolor-white">12312312</li>
+        <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
+              My Blog
+          </li>
+        <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
+              Contact Me
+          </li>
       </ul>
+      
       <mu-list @itemClick="closeBottomSheet" class="bg-333">
-        <mu-sub-header>
-          请选择一个
-        </mu-sub-header>
-        <mu-list-item title="阴阳师"/>
-        <mu-list-item title="Inbox">
-            <mu-icon slot="left" value="inbox"/>
-        </mu-list-item>
+        <div class="width-100 text-align-center margin-top-2 flex-justify-center  flex-items-center flex-content-center bg-333 font-size-12 textclolor-black-low">
+          connext with me
+        </div>
+        <div class="width-100 text-align-center margin-top-2 margin-bottom-3 flex-justify-center  flex-items-center flex-content-center bg-333">
+            <span class="flex-1 ion-social-github font-size-20 textclolor-white margin-right-3"></span>
+            <span class="flex-1 ion-social-twitter font-size-20 textclolor-white margin-right-3"></span>
+            <span class="flex-1 ion-social-facebook font-size-20 textclolor-white margin-right-3"></span>
+            <span class="flex-1 ion-social-googleplus font-size-20 textclolor-white margin-right-3"></span>
+            <span class="flex-1 ion-social-dribbble-outline font-size-20 textclolor-white margin-right-3"></span>
+        </div>
       </mu-list>
     </mu-bottom-sheet>
   </div>
