@@ -87,6 +87,8 @@ $lineheight-list:10,12,14,18,20,22,25,30,35,40,42,50,65,62;
 @each $lineheight in $lineheight-list{
 	.line-height-#{$lineheight}{line-height:#{$lineheight}px;}
 }
+.nomargin{margin: 0;}
+.margin-auto{margin: 0 auto;}
 /*min-width*/
 $minwidth-list:30,40,50,60,90;
 @each $minwidth in $minwidth-list{
@@ -119,8 +121,6 @@ $breakpoint-map: (
            margin-#{ map-get($map, p)} : map-get($map, v);
         }
 }
-.nomargin{margin: 0;}
-.margin-auto{margin: 0 auto;}
 /*padding*/
 @each $label , $map in $breakpoint-map {
         .padding-#{$label}{

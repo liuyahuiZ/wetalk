@@ -6,7 +6,7 @@
     @mouseup="stopDrag" @touchend="stopDrag" @mouseleave="stopDrag">
       <div class="content" :style="contentPosition">
         <div class="loadmore-top" v-if="!refresh" v-bind:class="{ transroute: rotate, transnone: !rotate }">↓</div>
-        <div class="loadmore-top" v-if="refresh"><div class="spanner span-inner"></div></div>
+        <div class="loadmore-top" v-if="refresh"><div class="spanner span-inner" ></div></div>
         <router-link to="/second">
           <p>go page 2</p>
         </router-link>
@@ -43,8 +43,8 @@ export default {
       refresh: false,
       showloading: false,
       deny: 0,
-      limitHight: 110,
-      limitlow: -110,
+      limitHight: 190,
+      limitlow: -190,
       lineNem: 8
     }
   },

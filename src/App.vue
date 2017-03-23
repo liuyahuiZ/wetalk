@@ -1,5 +1,5 @@
 <template>
-  <div class="page-tabbar">
+  <div class="page-tabbar" >
     <teheader :totitle='totitle' :fromtitle='fromtitle' :showbar='showBar' :name="transitionName"></teheader>
     <div class="page-content">
     <transition  :name="transitionName" :mode="transModule" >
@@ -26,7 +26,8 @@ export default {
       showBar: false,
       totitle: '',
       fromtitle: '',
-      transName: {}
+      transName: {},
+      scrolled: false
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -77,10 +78,21 @@ export default {
         status = {'status': false, 'index': 0}
       }
       return status
+    },
+    scroll: function () {
+      console.log('123')
+    },
+    handleScroll () {
+      // console.log(window.scrollY)
+      if (window.scrollY > 120) {
+        this.showBar = true
+      } else {
+        this.showBar = false
+      }
     }
   },
   created: function () {
-    // console.log('created')
+    window.addEventListener('scroll', this.handleScroll)
   },
   components: {
     teheader

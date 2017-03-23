@@ -13,9 +13,9 @@
     </div>
   </div>-->
   <div>
-  <div class="fixed width-100 zindex-100 height-120 text-align-center ">
+  <div class="fixed width-100 zindex-100 height-120 text-align-center " v-bind:class="{ bghand: showbar, bgtrans: !showbar }">
         <div class="width-80 margin-auto box-flex text-align-center flex-direction-row flex-wrap flex-justify-center flex-items-center height-100">
-        <div class="flex-1 height-30 flex-self-center">
+        <div class="flex-1 height-30 text-align-left flex-self-center ">
             <span class="ion-navicon-round font-size-26" @click="openBottomSheet"></span>
         </div>
         <div class="flex-3 height-30 height-50 line-height-50 flex-direction-row flex-items-flex-start">
@@ -30,17 +30,17 @@
       </div>
       <ul class="list-all bg-333" @Click="closeBottomSheet">
         <router-link to="/home">
-          <li class="line-height-50 text-align-center textclolor-white" @click="closeBottomSheet">
+          <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
               Home
           </li>
         </router-link>
         <router-link to="/first">
-          <li class="line-height-50 text-align-center textclolor-white" @click="closeBottomSheet">
+          <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
               page1
           </li>
         </router-link>
         <router-link to="/second">
-          <li class="line-height-50 text-align-center textclolor-white" @click="closeBottomSheet">
+          <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
                 page2
           </li>
         </router-link>
@@ -166,6 +166,14 @@ export default {
 }
 .list-leave-active {
   animation: left-out 0.5s ease;
+}
+.bghand{
+  background: rgba(255,255,255,0.7);
+  transition: all 0.5s ease;
+}
+.bgtrans{
+  background: transparent;
+  transition: all 0.5s ease;
 }
 /*.list-move {
   transition: transform 1s;
