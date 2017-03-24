@@ -21,7 +21,9 @@
         <div class="flex-3 height-30 height-50 line-height-50 flex-direction-row flex-items-flex-start">
             <div class="flex-2"><img class="height-100" src="../Img/logo_b.png" lazy="loaded"></div>
         </div>
-        <div class="flex-1 height-30 bg-button-red flex-self-flex-start">5</div>
+        <div class="flex-1 height-30 text-align-right flex-self-center">
+          <span class="ion-search font-size-26"></span>
+        </div>
         </div>
     </div>
     <mu-bottom-sheet :open="bottomSheet" @close="closeBottomSheet" >
@@ -34,22 +36,26 @@
               Home
           </li>
         </router-link>
-        <router-link to="/first">
+        <router-link to="/workList">
           <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
               My Work
           </li>
         </router-link>
-        <router-link to="/contact">
+        <router-link to="/myshill">
           <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
               My Shill
           </li>
         </router-link>
+        <router-link to="/articleList">
         <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
               My Blog
-          </li>
+        </li>
+        </router-link>
+        <router-link to="/contact">
         <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
               Contact Me
-          </li>
+        </li>
+        </router-link>
       </ul>
       
       <mu-list @itemClick="closeBottomSheet" class="bg-333">

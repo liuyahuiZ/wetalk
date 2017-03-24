@@ -49,6 +49,8 @@ $animal-list:3,6,9;
 .greyinput::-webkit-input-placeholder{color: #999;}
 /*images*/
 .images-con{width: 100%;}
+.images-half{width: 50%;}
+.images-33{width: 33.33%;}
 .images-all{width: 100%;float: left;}
 .images-large{width: 130%;float: left;}
 .images-small{width: 60%;float: left;}
@@ -156,7 +158,7 @@ $position-map: (
 }
 
 /*text-color*/
-@each $textname,$color in (textclolor-red,#fd5023),(textclolor-black,#000),(textclolor-black-low,#999),(textclolor-white,#fff),(textclolor-gray,#ccc),(textclolor-gray-red,#fc9378),(textclolor-blue-white,#66ccf5),(textclolor-blue,#9db9c5),(textclolor-green,#38c49f),(textclolor-666,#666),(textclolor-333,#333),(textclolor-alink,#2391e5),(textcolor-bg,#50afd6),(textcolor-yellow,#ffe082),(textcolor-quan-red,#f1483a),(textcolor-quan-gold,#ffa439),(textcolor-quan-brown,#dbb181),(textcolor-quan-detail,#8b501a),(textcolor-407b99,#407b99),(textcolor-be8116,#be8116),(textcolor-51b0d6,#51b0d6),(textcolor-ea3a3a,#ea3a3a),(textcolor-ff9b27,#ff9b27),(textcolor-2d2d2d,#2d2d2d),(textcolor-aeaeae,#aeaeae){
+@each $textname,$color in (textclolor-red,#fd5023),(textclolor-black,#000),(textclolor-black-low,#999),(textclolor-333,#333),(textclolor-white,#fff),(textclolor-gray,#ccc),(textclolor-gray-red,#fc9378),(textclolor-blue-white,#66ccf5),(textclolor-blue,#9db9c5),(textclolor-green,#38c49f),(textclolor-666,#666),(textclolor-333,#333),(textclolor-alink,#2391e5),(textcolor-bg,#50afd6),(textcolor-yellow,#ffe082),(textcolor-quan-red,#f1483a),(textcolor-quan-gold,#ffa439),(textcolor-quan-brown,#dbb181),(textcolor-quan-detail,#8b501a),(textcolor-407b99,#407b99),(textcolor-be8116,#be8116),(textcolor-51b0d6,#51b0d6),(textcolor-ea3a3a,#ea3a3a),(textcolor-ff9b27,#ff9b27),(textcolor-2d2d2d,#2d2d2d),(textcolor-aeaeae,#aeaeae){
   .#{$textname}{color: $color;}
 }
 /*backgound-color*/
@@ -171,7 +173,7 @@ $position-map: (
 .text-indent{text-indent: 1em;}
 
 /*flex-length （即项目的排列方向*/
-$length-list:1,2,3,4,5;
+$length-list:1,2,3,4,5,6,7,8,9;
 @each $direction in $length-list{
 	.flex-#{$direction}{flex:#{$direction};}
 }

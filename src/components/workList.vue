@@ -1,5 +1,5 @@
 <template>
-  <div id="firstcomponent">
+  <div id="articleList">
     <!--<teheader tirtle='first'></teheader>-->
     <div id="page" class="page-header-main" @mousedown="startDrag" @touchstart="startDrag"
     @mousemove="onDrag" @touchmove="onDrag"
@@ -7,10 +7,22 @@
       <div class="content" :style="contentPosition">
         <div class="loadmore-top" v-if="!refresh" v-bind:class="{ transroute: rotate, transnone: !rotate }">↓</div>
         <div class="loadmore-top" v-if="refresh"><div class="spanner span-inner" ></div></div>
-        <router-link to="/second">
-          <p>go page 2</p>
-        </router-link>
-        <p class="padding-all" v-for="(n,index) in lineNem">{{index}}. qiwo iansdo asdj alkj</p>
+        <div class="box-flex width-80 margin-auto margin-top-2 flex-wrap">
+          <div class="box-flex images-half flex-direction-column"  >
+            <div class="padding-all masonry" v-for="(n,index) in lineNem">
+            <img class="images-con" v-if="index%3==0" src="../Img/pi1.jpg">
+            <img class="images-con" v-if="index%3==1" src="../Img/pic.jpg">
+            <img class="images-con" v-if="index%3==2" src="../Img/pic4.png">
+            </div>
+          </div>
+          <div class="box-flex images-half flex-direction-column" >
+            <div class="padding-all masonry" v-for="(n,index) in lineNem">
+            <img class="images-con" v-if="index%3==0" src="../Img/pic4.png">
+            <img class="images-con" v-if="index%3==1" src="../Img/pi1.jpg">
+            <img class="images-con" v-if="index%3==2" src="../Img/pic.jpg">
+            </div>
+          </div>
+        </div>
         <div class="loadmore-bottom" v-if="!showloading" v-bind:class="{ transroute: !rotate, transnone: rotate }">↓</div>
         <div class="loadmore-bottom" v-if="showloading"><div class="spanner span-inner"></div></div>
       </div>
@@ -227,4 +239,9 @@ export default {
     height: 20px;
     width: 20px;
 }
+.masonry img {
+    transition: .8s all;
+    opacity: 0.7;
+}
+.masonry img:hover { opacity: 0.9; box-shadow: 1px 1px 20px #333; }
 </style>

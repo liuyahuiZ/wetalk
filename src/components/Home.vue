@@ -17,12 +17,12 @@
             <img class="images-con" src="../Img/pic.jpg">
             </div>
             <div class="flex-1 padding-all">
-                <span class="font-size-16">The Iron man</span>
+                <span class="font-size-16 lineThrou">The Iron man</span>
             </div>
         </div>
         <div class="box-flex width-80 margin-auto margin-top-2">
             <div class="flex-1">
-                <span class="font-size-16">Mountine</span>
+                <span class="font-size-16 lineThrou">Mountine</span>
             </div>
             <div class="flex-1">
             <img class="images-con" src="../Img/pi2.jpg">
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="box-flex width-80 margin-auto margin-top-2">
-        <div class="line-height-30 font-size-26">My Work</div>
+        <div class="line-height-30 font-size-26 lineThrou">My Work</div>
     </div>
     <div class="box-flex text-align-center line-height-30 flex-direction-row flex-wrap flex-justify-center flex-items-center flex-content-space-around height-200">
       <div class="height-30 bg-e9f5fa" style="flex:1 1;height: 60%">1</div>
@@ -41,7 +41,7 @@
     </div>
 
     <div class="box-flex width-80 margin-auto margin-top-2">
-        <div class="line-height-30 font-size-26">My Skill</div>
+        <div class="line-height-30 font-size-26 lineThrou">My Skill</div>
     </div>
     <div class="box-flex text-align-center line-height-30 flex-direction-row flex-wrap flex-justify-center flex-items-center flex-content-space-around height-200">
       <div class="height-30 bg-e9f5fa" style="flex:1 1;height: 60%">1</div>
@@ -96,5 +96,13 @@ export default {
 }
 </script>
 <style >
+.box-flex img {
+    transition: .8s all;
+    opacity: 0.7;
+}
+.box-flex img:hover { opacity: 0.9; box-shadow: 1px 1px 20px #333;
+transform:scale(1.1,1.1); }
+.lineThrou{transition: .8s all;}
+.lineThrou:hover{text-decoration:line-through;}
 
 </style>
