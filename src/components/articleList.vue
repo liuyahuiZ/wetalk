@@ -15,43 +15,20 @@
             <div class=" line-height-30">{{n.info}}</div>
             <div class="width-100 text-align-left margin-top-2 margin-bottom-3 flex-justify-center ">
                 <span class="flex-1 ion-eye font-size-16 textclolor-333 margin-right-1"></span>
-                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">(12)</span>
+                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">({{n.sea}})</span>
                 <span class="flex-1 ion-heart font-size-16 textclolor-333 margin-right-1"></span>
-                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">(12)</span>
+                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">(100)</span>
                 <span class="flex-1 ion-chatbubble-working font-size-16 textclolor-333 margin-right-1"></span>
-                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">(12)</span>
+                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">({{n.comment?n.comment.length:0}})</span>
             </div>
           </div>
           <div class="flex-3">
-            <img class="images-con border-radius-9" v-bind:src="('http://localhost:2016/getphotoPal/'+n.img_group[0].photopath)">
+            <img class="images-con border-radius-9" v-bind:src="(config.api+n.img_group[0].photopath)">
           </div>
         </div>
-        <!--<div class="box-flex width-80 margin-auto margin-top-2" v-for="(n,index) in lineNem">
-          <div class="flex-6 flex-direction-column">
-            <router-link to="/detail">
-            <div class="font-size-16 line-height-40">{{index}}.当你敢于展现“脆弱”的时候，才最为强大</div>
-            </router-link>
-            <div class=" line-height-30">文/小宋老师 01 最近这段时间，可能是因为把自己逼得太紧，我感觉压力好大、身心俱疲。连续两天晚上，我端坐在电脑前准备写文章，结果两个小时过去了，在键盘上敲出来的字都没有超过...</div>
-            <div class="width-100 text-align-left margin-top-2 margin-bottom-3 flex-justify-center ">
-                <span class="flex-1 ion-eye font-size-16 textclolor-333 margin-right-1"></span>
-                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">(12)</span>
-                <span class="flex-1 ion-heart font-size-16 textclolor-333 margin-right-1"></span>
-                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">(12)</span>
-                <span class="flex-1 ion-chatbubble-working font-size-16 textclolor-333 margin-right-1"></span>
-                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">(12)</span>
-            </div>
-          </div>
-          <div class="flex-3">
-            <img class="images-con border-radius-9" src="../Img/pi1.jpg">
-          </div>
-        </div>-->
         <div class="loadmore-bottom" v-if="!showloading" v-bind:class="{ transroute: !rotate, transnone: rotate }">↓</div>
         <div class="loadmore-bottom" v-if="showloading"><div class="spanner span-inner"></div></div>
       </div>
-      <!--<svg class="bg" width="420" height="260">
-      <path :d="headerPath" fill="#3F51B5"></path>
-      </svg>
-        -->
     </div>
   </div>
 </template>
@@ -61,10 +38,9 @@ import teheader from './teheader.vue'
 import dynamics from 'dynamics.js'
 import { Spinner } from 'mint-ui'
 import Service from '@/util/service'
+import configs from '@/util/configs'
 import Vue from 'vue'
 Vue.component(Spinner.name, Spinner)
-// let page = document.getElementById('page')
-// console.log(page)
 
 export default {
   data () {
@@ -81,10 +57,12 @@ export default {
       limitHight: 190,
       limitlow: -190,
       lineNem: 8,
-      articleList: []
+      articleList: [],
+      config: configs.config
     }
   },
   beforeCreate: function () {
+    console.log(configs,configs.config.api)
     console.log('beforeCreate is triggered.')
     let reqbody={
       "pageNum":1,

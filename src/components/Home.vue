@@ -1,32 +1,30 @@
 <template>
 <div class="home">
     <el-carousel height="450px">
-      <el-carousel-item >
-        <img class="images-con" src="../Img/bg1.jpg">
-      </el-carousel-item>
-      <el-carousel-item >
-        <img class="images-con" src="../Img/bg2.jpg">
-      </el-carousel-item>
-      <el-carousel-item >
-        <img class="images-con" src="../Img/pi1.jpg">
+      <el-carousel-item v-for="(B,index) in banners">
+        <img class="images-con" v-bind:src="(config.api+B.img_group[0].photopath)">
       </el-carousel-item>
     </el-carousel>
     <div class="box-flex flex-direction-column margin-top-2">
-        <div class="box-flex width-80 margin-auto">
+        <div class="box-flex width-80 margin-auto" v-for="(A,index) in HomeArticle">
+           <div class="box-flex width-100" v-if="index%2==0"> 
             <div class="flex-1">
-            <img class="images-con imgpic" src="../Img/pic.jpg">
+              <img class="images-con imgpic" v-bind:src="(config.api+A.img_group[0].photopath)" >
             </div>
-            <div class="flex-1 padding-all">
-                <span class="font-size-16 lineThrou">The Iron man</span>
+            <div class="box-flex flex-1 padding-all flex-direction-column">
+                <span class="font-size-16 lineThrou">{{A.tirtle}}</span>
+                <span class="font-size-12">{{A.info}}</span>
             </div>
-        </div>
-        <div class="box-flex width-80 margin-auto margin-top-2">
+           </div>
+           <div class="box-flex width-100" v-else> 
+            <div class="box-flex flex-1 padding-all flex-direction-column">
+                <span class="font-size-16 lineThrou">{{A.tirtle}}</span>
+                <span class="font-size-12">{{A.info}}</span>
+            </div>
             <div class="flex-1">
-                <span class="font-size-16 lineThrou">Mountine</span>
+              <img class="images-con imgpic" v-bind:src="(config.api+A.img_group[0].photopath)" >
             </div>
-            <div class="flex-1">
-            <img class="images-con imgpic" src="../Img/pi2.jpg">
-            </div>
+           </div>
         </div>
     </div>
     <div class="box-flex width-80 margin-auto margin-top-2">
@@ -75,45 +73,26 @@
     <div class="box-flex width-80 margin-auto margin-top-2">
         <div class="line-height-30 font-size-26 lineThrou">My Skill</div>
     </div>
-     <div class="box-flex width-100 text-align-center margin-auto margin-top-2 flex-direction-row flex-justify-center flex-items-center">
+     <div class="box-flex width-100 text-align-center margin-auto margin-top-2 margin-bottom-3 flex-direction-row flex-justify-center flex-items-center">
           <div class="flex-direction-column">
-						<el-progress type="circle" class="margin-right-1" :percentage="25"></el-progress>
+						<el-progress type="circle" class="margin-right-1" :percentage="95"></el-progress>
 						<span>JavaScript</span>
           </div>
 					<div class="flex-direction-column">
-						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
+						<el-progress type="circle" class="margin-right-1" :percentage="75"></el-progress>
 						<span>Node</span>
 					</div>
 					<div class="flex-direction-column">
-						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
-						<span>React</span>
+						<el-progress type="circle" class="margin-right-1" :percentage="90"></el-progress>
+						<span>PS</span>
 					</div>
           <div class="flex-direction-column">
-						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
+						<el-progress type="circle" class="margin-right-1" :percentage="65"></el-progress>
 						<span>React</span>
 					</div>
 			</div>
-      <div class="box-flex width-100 text-align-center margin-auto margin-top-2 flex-direction-row flex-justify-center flex-items-center">
-          <div class="flex-direction-column">
-						<el-progress type="circle" class="margin-right-1" :percentage="25"></el-progress>
-						<span>JavaScript</span>
-          </div>
-					<div class="flex-direction-column">
-						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
-						<span>Node</span>
-					</div>
-					<div class="flex-direction-column">
-						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
-						<span>React</span>
-					</div>
-          <div class="flex-direction-column">
-						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
-						<span>React</span>
-					</div>
-			</div>
-
     <div class="box-flex height-200 bg-333 margin-top-2 flex-direction-column flex-justify-center flex-items-center" >
-        <div class="line-height-30 font-size-12 textclolor-black-low">© 2015 All rights reserved. Design and development by Juraj Molnár</div>
+        <div class="line-height-30 font-size-12 textclolor-black-low">© 2015 All rights reserved. Design and development by Liu Yahui</div>
         <div class="line-height-30 font-size-12 textclolor-white ">Projects made with </div>
         <div class="width-80 margin-auto text-align-center flex-justify-center flex-items-center flex-content-center">
             <span class="flex-1 ion-social-github font-size-20 textclolor-white margin-right-3"></span>
@@ -126,6 +105,8 @@
 </div>
 </template>
 <script>
+import Service from '@/util/service'
+import configs from '@/util/configs'
 export default {
   data () {
     return {
@@ -134,10 +115,35 @@ export default {
       open: false,
       docked: true,
       bottomSheet: false,
-      dialog: false
+      dialog: false,
+      banners: [],
+      HomeArticle: [],
+      config: configs.config,
     }
   },
   watch: {
+  },
+  beforeCreate: function () {
+      console.log('beforeCreate is triggered.')
+      let reqbody={
+        "typecode" : "HomeBanner"
+      }
+      Service.Post('PictureList',reqbody)
+      .then(data => {
+          console.log(data,data.data)
+          this.banners = data.data
+      })
+      .catch(error => console.log(error))
+
+      let reqabody={
+        "typecode" : "Home"
+      }
+      Service.Post('ArticleList',reqabody)
+      .then(data => {
+          console.log(data,data.data)
+          this.HomeArticle = data.data
+      })
+      .catch(error => console.log(error))
   },
   methods: {
     add: function () {

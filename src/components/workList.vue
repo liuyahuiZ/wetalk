@@ -9,17 +9,13 @@
         <div class="loadmore-top" v-if="refresh"><div class="spanner span-inner" ></div></div>
         <div class="box-flex width-80 margin-auto margin-top-2 flex-wrap">
           <div class="box-flex images-half flex-direction-column"  >
-            <div class="padding-all masonry" v-for="(n,index) in lineNem">
-            <img class="images-con imgpic" v-if="index%3==0" src="../Img/pi1.jpg">
-            <img class="images-con imgpic" v-if="index%3==1" src="../Img/pic.jpg">
-            <img class="images-con imgpic" v-if="index%3==2" src="../Img/pic4.png">
+            <div class="padding-all masonry" v-for="(L,index) in workListLeft">
+            <img class="images-con imgpic" v-bind:src="(config.api+L.img_group[0].photopath)">
             </div>
           </div>
           <div class="box-flex images-half flex-direction-column" >
-            <div class="padding-all masonry" v-for="(n,index) in lineNem">
-            <img class="images-con imgpic" v-if="index%3==0" src="../Img/pic4.png">
-            <img class="images-con imgpic" v-if="index%3==1" src="../Img/pi1.jpg">
-            <img class="images-con imgpic" v-if="index%3==2" src="../Img/pic.jpg">
+            <div class="padding-all masonry" v-for="(R,index) in workListRight">
+            <img class="images-con imgpic" v-bind:src="(config.api+R.img_group[0].photopath)">
             </div>
           </div>
         </div>
@@ -35,6 +31,8 @@
 </template>
 
 <script>
+import Service from '@/util/service'
+import configs from '@/util/configs'
 import teheader from './teheader.vue'
 import dynamics from 'dynamics.js'
 import { Spinner } from 'mint-ui'
@@ -57,11 +55,30 @@ export default {
       deny: 0,
       limitHight: 190,
       limitlow: -190,
-      lineNem: 8
+      lineNem: 8,
+      workListLeft: [],
+      workListRight: [],
+      config: configs.config
     }
   },
   components: {
     teheader
+  },
+  beforeCreate: function () {
+    console.log('beforeCreate is triggered.')
+    let reqbody={}
+    Service.Post('PictureList',reqbody)
+    .then(data => {
+        console.log(data,data.data)
+        for(var i=0;i<data.data.length;i++){
+          if(i%2==0){
+            this.workListLeft.push(data.data[i])
+          }else{
+            this.workListRight.push(data.data[i])
+          }
+        }
+    })
+    .catch(error => console.log(error))
   },
   computed: {
     headerPath: function () {
@@ -175,6 +192,21 @@ export default {
         duration: 700,
         friction: 280
       })
+    },
+    loadDitail () {
+      let reqbody={}
+      Service.Post('PictureList',reqbody)
+      .then(data => {
+          console.log(data,data.data)
+          for(var i=0;i<data.data.length;i++){
+            if(i%2==0){
+              this.workListLeft.push(data.data[i])
+            }else{
+              this.workListRight.push(data.data[i])
+            }
+          }
+      })
+      .catch(error => console.log(error))
     },
     getdate: function () {
       return new Promise(function (resolve, reject) {
