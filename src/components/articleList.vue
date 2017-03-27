@@ -7,7 +7,26 @@
       <div class="content" :style="contentPosition">
         <div class="loadmore-top" v-if="!refresh" v-bind:class="{ transroute: rotate, transnone: !rotate }">↓</div>
         <div class="loadmore-top" v-if="refresh"><div class="spanner span-inner" ></div></div>
-        <div class="box-flex width-80 margin-auto margin-top-2" v-for="(n,index) in lineNem">
+        <div class="box-flex width-80 margin-auto margin-top-2" v-for="(n,index) in articleList">
+          <div class="flex-6 flex-direction-column">
+            <router-link :to="('/detail/'+n._id)">
+            <div class="font-size-16 line-height-40">{{n.tirtle}}</div>
+            </router-link>
+            <div class=" line-height-30">{{n.info}}</div>
+            <div class="width-100 text-align-left margin-top-2 margin-bottom-3 flex-justify-center ">
+                <span class="flex-1 ion-eye font-size-16 textclolor-333 margin-right-1"></span>
+                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">(12)</span>
+                <span class="flex-1 ion-heart font-size-16 textclolor-333 margin-right-1"></span>
+                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">(12)</span>
+                <span class="flex-1 ion-chatbubble-working font-size-16 textclolor-333 margin-right-1"></span>
+                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">(12)</span>
+            </div>
+          </div>
+          <div class="flex-3">
+            <img class="images-con border-radius-9" v-bind:src="('http://localhost:2016/getphotoPal/'+n.img_group[0].photopath)">
+          </div>
+        </div>
+        <!--<div class="box-flex width-80 margin-auto margin-top-2" v-for="(n,index) in lineNem">
           <div class="flex-6 flex-direction-column">
             <router-link to="/detail">
             <div class="font-size-16 line-height-40">{{index}}.当你敢于展现“脆弱”的时候，才最为强大</div>
@@ -25,7 +44,7 @@
           <div class="flex-3">
             <img class="images-con border-radius-9" src="../Img/pi1.jpg">
           </div>
-        </div>
+        </div>-->
         <div class="loadmore-bottom" v-if="!showloading" v-bind:class="{ transroute: !rotate, transnone: rotate }">↓</div>
         <div class="loadmore-bottom" v-if="showloading"><div class="spanner span-inner"></div></div>
       </div>
@@ -41,6 +60,7 @@
 import teheader from './teheader.vue'
 import dynamics from 'dynamics.js'
 import { Spinner } from 'mint-ui'
+import Service from '@/util/service'
 import Vue from 'vue'
 Vue.component(Spinner.name, Spinner)
 // let page = document.getElementById('page')
@@ -60,8 +80,22 @@ export default {
       deny: 0,
       limitHight: 190,
       limitlow: -190,
-      lineNem: 8
+      lineNem: 8,
+      articleList: []
     }
+  },
+  beforeCreate: function () {
+    console.log('beforeCreate is triggered.')
+    let reqbody={
+      "pageNum":1,
+      "numPerPage":10,
+    }
+    Service.Post('ArticleList',reqbody)
+    .then(data => {
+        // console.log(data,data.data)
+        this.articleList = data.data
+    })
+    .catch(error => console.log(error))
   },
   components: {
     teheader

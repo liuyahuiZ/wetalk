@@ -14,7 +14,7 @@
     <div class="box-flex flex-direction-column margin-top-2">
         <div class="box-flex width-80 margin-auto">
             <div class="flex-1">
-            <img class="images-con" src="../Img/pic.jpg">
+            <img class="images-con imgpic" src="../Img/pic.jpg">
             </div>
             <div class="flex-1 padding-all">
                 <span class="font-size-16 lineThrou">The Iron man</span>
@@ -25,31 +25,92 @@
                 <span class="font-size-16 lineThrou">Mountine</span>
             </div>
             <div class="flex-1">
-            <img class="images-con" src="../Img/pi2.jpg">
+            <img class="images-con imgpic" src="../Img/pi2.jpg">
             </div>
         </div>
     </div>
     <div class="box-flex width-80 margin-auto margin-top-2">
         <div class="line-height-30 font-size-26 lineThrou">My Work</div>
     </div>
-    <div class="box-flex text-align-center line-height-30 flex-direction-row flex-wrap flex-justify-center flex-items-center flex-content-space-around height-200">
-      <div class="height-30 bg-e9f5fa" style="flex:1 1;height: 60%">1</div>
-      <div class="height-30 bg-button-red" style="flex:2 1;height: 70%">2</div>
-      <div class="height-30 bg-e9f5fa" style="flex:3 1;height: 80%">3</div>
-      <div class="height-30 bg-button-red" style="flex:4 1;height: 90%">4</div>
-      <div class="height-30 bg-e9f5fa" style="flex:5 1;height: 100%">5</div>
+    <div class="box-flex width-90 margin-auto text-align-center flex-direction-column flex-wrap flex-justify-center flex-items-center flex-content-space-around">
+        <div class="box-flex flex-direction-row margin-top-2" style="height:60vh">
+            <div class="flex-2 overflow-hide flex-direction-column">
+              <div style="height:20vh">
+                <img class="images-height100 imgpic" src="../Img/pi2.jpg">
+              </div>
+              <div style="height:20vh">
+                <img class="images-height100 imgpic" src="../Img/pic.jpg">
+              </div>
+              <div style="height:20vh">
+                <img class="images-height100 imgpic" src="../Img/bg1.jpg">
+              </div>
+            </div>
+            <div class="flex-4 flex-direction-column">
+              <div class="flex-4 overflow-hide" style="height:40vh">
+                <img class="images-height100 imgpic" src="../Img/bg2.jpg">
+              </div>
+              <div class="box-flex flex-2 overflow-hide flex-direction-row flex-justify-flex-start flex-items-flex-start" style="height:20vh">
+                  <div class="flex-1" style="width:50%;height:20vh">
+                    <img class="images-height100 imgpic" src="../Img/bg3.jpg">
+                  </div>
+                  <div class="flex-1" style="width:50%;height:20vh">
+                    <img class="images-height100 imgpic" src="../Img/pi2.jpg">
+                  </div>
+              </div>
+           </div>
+            <div class="flex-2 overflow-hide flex-direction-column">
+              <div style="height:20vh">
+                <img class="images-height100 imgpic" src="../Img/pic.jpg">
+              </div>
+              <div style="height:20vh">
+                <img class="images-height100 imgpic" src="../Img/bg1.jpg">
+              </div>
+              <div style="height:20vh">
+                <img class="images-height100 imgpic" src="../Img/pi1.jpg">
+              </div>
+            </div>
+        </div>
     </div>
 
     <div class="box-flex width-80 margin-auto margin-top-2">
         <div class="line-height-30 font-size-26 lineThrou">My Skill</div>
     </div>
-    <div class="box-flex text-align-center line-height-30 flex-direction-row flex-wrap flex-justify-center flex-items-center flex-content-space-around height-200">
-      <div class="height-30 bg-e9f5fa" style="flex:1 1;height: 60%">1</div>
-      <div class="height-30 bg-button-red" style="flex:2 1;height: 70%">2</div>
-      <div class="height-30 bg-e9f5fa" style="flex:3 1;height: 80%">3</div>
-      <div class="height-30 bg-button-red" style="flex:4 1;height: 90%">4</div>
-      <div class="height-30 bg-e9f5fa" style="flex:5 1;height: 100%">5</div>
-    </div>
+     <div class="box-flex width-100 text-align-center margin-auto margin-top-2 flex-direction-row flex-justify-center flex-items-center">
+          <div class="flex-direction-column">
+						<el-progress type="circle" class="margin-right-1" :percentage="25"></el-progress>
+						<span>JavaScript</span>
+          </div>
+					<div class="flex-direction-column">
+						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
+						<span>Node</span>
+					</div>
+					<div class="flex-direction-column">
+						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
+						<span>React</span>
+					</div>
+          <div class="flex-direction-column">
+						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
+						<span>React</span>
+					</div>
+			</div>
+      <div class="box-flex width-100 text-align-center margin-auto margin-top-2 flex-direction-row flex-justify-center flex-items-center">
+          <div class="flex-direction-column">
+						<el-progress type="circle" class="margin-right-1" :percentage="25"></el-progress>
+						<span>JavaScript</span>
+          </div>
+					<div class="flex-direction-column">
+						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
+						<span>Node</span>
+					</div>
+					<div class="flex-direction-column">
+						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
+						<span>React</span>
+					</div>
+          <div class="flex-direction-column">
+						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
+						<span>React</span>
+					</div>
+			</div>
 
     <div class="box-flex height-200 bg-333 margin-top-2 flex-direction-column flex-justify-center flex-items-center" >
         <div class="line-height-30 font-size-12 textclolor-black-low">© 2015 All rights reserved. Design and development by Juraj Molnár</div>
@@ -96,13 +157,13 @@ export default {
 }
 </script>
 <style >
-.box-flex img {
-    transition: .8s all;
-    opacity: 0.7;
+.box-flex .imgpic {
+    transition: .7s all;
+    opacity: 0.8;
 }
-.box-flex img:hover { opacity: 0.9; box-shadow: 1px 1px 20px #333;
-transform:scale(1.1,1.1); }
+.box-flex .imgpic:hover { opacity: 1; box-shadow: 1px 1px 20px #333;
+transform:scale(1.1,1.1);cursor: pointer; }
 .lineThrou{transition: .8s all;}
-.lineThrou:hover{text-decoration:line-through;}
+.lineThrou:hover{text-decoration:line-through;cursor: pointer}
 
 </style>

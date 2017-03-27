@@ -84,7 +84,7 @@ export default {
     },
     handleScroll () {
       // console.log(window.scrollY)
-      if (window.scrollY > 120) {
+      if (window.scrollY > 30) {
         this.showBar = true
       } else {
         this.showBar = false

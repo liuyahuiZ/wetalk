@@ -48,6 +48,8 @@ $animal-list:3,6,9;
 .whiteinput::-webkit-input-placeholder{color: #fff;}
 .greyinput::-webkit-input-placeholder{color: #999;}
 /*images*/
+.images-allhei{height:100vh;}
+.images-height100{height: 100%;}
 .images-con{width: 100%;}
 .images-half{width: 50%;}
 .images-33{width: 33.33%;}
@@ -110,6 +112,10 @@ $width-list:30,40,50,60,65,70,80,90,100;
 $height-list:10,20,25,30,35,40,50,65,100,120,200,300;
 @each $height in $height-list{
 	.height-#{$height}{height:#{$height}px;}
+}
+$heightp-list:10,20,25,30,35,40,50,65,100;
+@each $heightp in $heightp-list{
+	.heightp-#{$heightp}{height:#{$heightp*1%};}
 }
 /*margin*/
 $breakpoint-map: (

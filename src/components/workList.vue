@@ -10,16 +10,16 @@
         <div class="box-flex width-80 margin-auto margin-top-2 flex-wrap">
           <div class="box-flex images-half flex-direction-column"  >
             <div class="padding-all masonry" v-for="(n,index) in lineNem">
-            <img class="images-con" v-if="index%3==0" src="../Img/pi1.jpg">
-            <img class="images-con" v-if="index%3==1" src="../Img/pic.jpg">
-            <img class="images-con" v-if="index%3==2" src="../Img/pic4.png">
+            <img class="images-con imgpic" v-if="index%3==0" src="../Img/pi1.jpg">
+            <img class="images-con imgpic" v-if="index%3==1" src="../Img/pic.jpg">
+            <img class="images-con imgpic" v-if="index%3==2" src="../Img/pic4.png">
             </div>
           </div>
           <div class="box-flex images-half flex-direction-column" >
             <div class="padding-all masonry" v-for="(n,index) in lineNem">
-            <img class="images-con" v-if="index%3==0" src="../Img/pic4.png">
-            <img class="images-con" v-if="index%3==1" src="../Img/pi1.jpg">
-            <img class="images-con" v-if="index%3==2" src="../Img/pic.jpg">
+            <img class="images-con imgpic" v-if="index%3==0" src="../Img/pic4.png">
+            <img class="images-con imgpic" v-if="index%3==1" src="../Img/pi1.jpg">
+            <img class="images-con imgpic" v-if="index%3==2" src="../Img/pic.jpg">
             </div>
           </div>
         </div>
@@ -243,5 +243,5 @@ export default {
     transition: .8s all;
     opacity: 0.7;
 }
-.masonry img:hover { opacity: 0.9; box-shadow: 1px 1px 20px #333; }
+.masonry img:hover { opacity: 0.9; box-shadow: 1px 1px 20px #333;cursor: pointer }
 </style>
