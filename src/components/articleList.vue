@@ -10,19 +10,19 @@
         <div class="box-flex width-80 margin-auto margin-top-2" v-for="(n,index) in articleList">
           <div class="flex-6 flex-direction-column">
             <router-link :to="('/detail/'+n._id)">
-            <div class="font-size-16 line-height-40">{{n.tirtle}}</div>
+            <div class="tirtleFont line-height-40">{{n.tirtle}}</div>
             </router-link>
-            <div class=" line-height-30">{{n.info}}</div>
+            <div class="contentFont line-height-30">{{n.info}}</div>
             <div class="width-100 text-align-left margin-top-2 margin-bottom-3 flex-justify-center ">
-                <span class="flex-1 ion-eye font-size-16 textclolor-333 margin-right-1"></span>
-                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">({{n.sea}})</span>
-                <span class="flex-1 ion-heart font-size-16 textclolor-333 margin-right-1"></span>
-                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">(100)</span>
-                <span class="flex-1 ion-chatbubble-working font-size-16 textclolor-333 margin-right-1"></span>
-                <span class="flex-1 font-size-12 textclolor-333 margin-right-3">({{n.comment?n.comment.length:0}})</span>
+                <span class="flex-1 ion-eye iconFont textclolor-333 margin-right-1"></span>
+                <span class="flex-1 iconFont textclolor-333 margin-right-3">({{n.sea}})</span>
+                <span class="flex-1 ion-heart iconFont textclolor-333 margin-right-1"></span>
+                <span class="flex-1 iconFont textclolor-333 margin-right-3">(100)</span>
+                <span class="flex-1 ion-chatbubble-working iconFont textclolor-333 margin-right-1"></span>
+                <span class="flex-1 iconFont textclolor-333 margin-right-3">({{n.comment?n.comment.length:0}})</span>
             </div>
           </div>
-          <div class="flex-3">
+          <div class="flex-3 img-right">
             <img class="images-con border-radius-9" v-bind:src="(config.api+n.img_group[0].photopath)">
           </div>
         </div>

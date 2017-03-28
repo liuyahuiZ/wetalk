@@ -56,10 +56,9 @@ export default {
       }
       if (to.name === 'home') {
         this.showBar = false
-      } else {
-        this.showBar = true
       }
       console.log(this.transitionName)
+      document.body.scrollTop=0
     }
   },
   methods: {

@@ -126,9 +126,3 @@ export default {
   }
 }
 </script>
-<style>
-.charts {
-  width:600px;
-	height:400px;
-}
-</style>

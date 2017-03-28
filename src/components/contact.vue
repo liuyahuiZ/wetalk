@@ -20,7 +20,7 @@
           <div class="flex-1 padding-all"><el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="textarea"></el-input></div>
         </div>
         <div class="box-flex flex-justify-center flex-items-center padding-all">
-            <el-button type="primary" size="large">Send Message</el-button>
+            <el-button type="primary" size="large" class="iconFont">Send Message</el-button>
         </div>
       </div>
       <mt-cell :title="animatedNumber">

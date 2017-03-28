@@ -1,6 +1,6 @@
 <template>
 <div class="home">
-    <el-carousel height="450px">
+    <el-carousel class="bannerHeight">
       <el-carousel-item v-for="(B,index) in banners">
         <img class="images-con" v-bind:src="(config.api+B.img_group[0].photopath)">
       </el-carousel-item>
@@ -13,17 +13,17 @@
             </div>
             <div class="box-flex flex-1 padding-all flex-direction-column">
                 <router-link :to="('/detail/'+A._id)">
-                <span class="font-size-16 lineThrou">{{A.tirtle}}</span>
+                <span class="tirtleFont lineThrou">{{A.tirtle}}</span>
                 </router-link>
-                <span class="font-size-12">{{A.info}}</span>
+                <span class="contentFont">{{A.info}}</span>
             </div>
            </div>
            <div class="box-flex width-100" v-else> 
             <div class="box-flex flex-1 padding-all flex-direction-column">
                 <router-link :to="('/detail/'+A._id)">
-                  <span class="font-size-16 lineThrou">{{A.tirtle}}</span>
+                  <span class="tirtleFont lineThrou">{{A.tirtle}}</span>
                 </router-link>
-                <span class="font-size-12">{{A.info}}</span>
+                <span class="contentFont">{{A.info}}</span>
             </div>
             <div class="flex-1">
               <img class="images-con imgpic" v-bind:src="(config.api+A.img_group[0].photopath)" >
@@ -31,10 +31,10 @@
            </div>
         </div>
     </div>
-    <div class="box-flex width-80 margin-auto margin-top-2">
+    <div class="box-flex width-80 margin-auto margin-top-2 padding-top-5 padding-bottom-3 text-align-center flex-justify-center flex-items-center">
         <div class="line-height-30 font-size-26 lineThrou">My Work</div>
     </div>
-    <div class="box-flex width-90 margin-auto text-align-center flex-direction-column flex-wrap flex-justify-center flex-items-center flex-content-space-around">
+    <div class="box-flex width-100 margin-auto text-align-center flex-direction-column flex-wrap flex-justify-center flex-items-center flex-content-space-around">
         <div class="box-flex flex-direction-row margin-top-2" style="height:60vh">
             <div class="flex-2 overflow-hide flex-direction-column">
               <div style="height:20vh">
@@ -74,13 +74,14 @@
         </div>
     </div>
 
-    <div class="box-flex width-80 margin-auto margin-top-2">
-        <div class="line-height-30 font-size-26 lineThrou">My Skill</div>
+    <div class="box-flex width-100 margin-auto margin-top-2 padding-top-5 padding-bottom-5 bg-green text-align-center flex-justify-center flex-items-center">
+        <div class="line-height-30 font-size-26 lineThrou textclolor-white">My Skill</div>
     </div>
-     <div class="box-flex width-100 text-align-center margin-auto margin-top-2 margin-bottom-3 flex-direction-row flex-justify-center flex-items-center">
+     <div class="box-flex width-100 bg-green text-align-center margin-auto padding-bottom-5 flex-direction-row flex-justify-center flex-items-center">
           <div class="flex-direction-column">
-						<el-progress type="circle" class="margin-right-1" :percentage="95"></el-progress>
-						<span>JavaScript</span>
+            <!--<mu-circular-progress mode="determinate" class="margin-right-1" :size="120" :value="95" :strokeWidth="10" color="#05A762" />-->
+						<el-progress type="circle" class="margin-right-1" :percentage="75"></el-progress>
+            <span>JavaScript</span>
           </div>
 					<div class="flex-direction-column">
 						<el-progress type="circle" class="margin-right-1" :percentage="75"></el-progress>
@@ -95,9 +96,9 @@
 						<span>React</span>
 					</div>
 			</div>
-    <div class="box-flex height-200 bg-333 margin-top-2 flex-direction-column flex-justify-center flex-items-center" >
-        <div class="line-height-30 font-size-12 textclolor-black-low">© 2015 All rights reserved. Design and development by Liu Yahui</div>
-        <div class="line-height-30 font-size-12 textclolor-white ">Projects made with </div>
+    <div class="box-flex height-200 bg-333 flex-direction-column flex-justify-center flex-items-center" >
+        <div class="line-height-30 tirtleFont textclolor-black-low">© 2015 All rights reserved. Design and development by Liu Yahui</div>
+        <div class="line-height-30 iconFont textclolor-white ">Projects made with </div>
         <div class="width-80 margin-auto text-align-center flex-justify-center flex-items-center flex-content-center">
             <a href="https://github.com/liuyahuiZ">
             <span class="flex-1 ion-social-github font-size-20 textclolor-white margin-right-3"></span>
