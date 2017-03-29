@@ -7,46 +7,79 @@
       </div>
       <div class="box-flex width-80 text-align-center margin-auto margin-top-2 flex-direction-row flex-justify-center flex-items-center">
           <div class="flex-direction-column">
-						<el-progress type="circle" class="margin-right-1" :percentage="25"></el-progress>
+						<el-progress type="circle" class="margin-right-1" :percentage="90"></el-progress>
 						<span>JavaScript</span>
           </div>
 					<div class="flex-direction-column">
-						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
+						<el-progress type="circle" class="margin-right-1" :percentage="75"></el-progress>
 						<span>Node</span>
 					</div>
 					<div class="flex-direction-column">
-						<el-progress type="circle" class="margin-right-1" :percentage="55"></el-progress>
+						<el-progress type="circle" class="margin-right-1" :percentage="75"></el-progress>
 						<span>React</span>
 					</div>
+					<div style="display:none">{{workdate}}</div>
 			</div>
 			<div class="box-flex width-80 margin-auto margin-top-2 flex-direction-column flex-justify-center flex-items-center">
-				<div id="bar" class="flex-1 charts"></div>
 				<div id="line" class="flex-1 charts"></div>
+				<div id="bar" class="flex-1 charts"></div>
 			</div>
     </div>
   </div>
 </template>
 <script>
+import Service from '@/util/service'
+import getDate from '@/util/getDate'
 import echarts from "echarts"
 export default {
   data () {
     return {
-			optione1: {
-				title: { text: 'ECharts 入门示例' },
-				tooltip: {},
-				xAxis: {
-						data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-				},
-				yAxis: {},
-				series: [{
-						name: '销量',
-						type: 'bar',
-						data: [5, 20, 36, 10, 10, 20]
-				}]
+		optione1: {
+			color: ['#79D46D'],
+			title: { text: 'My Shill' },
+			tooltip: {},
+			xAxis: {
+					data: ["PHP","JavaScript","PS","Node","React","Vue"]
 			},
-			optione2: {
+			yAxis: {},
+			series: [{
+					name: '销量',
+					type: 'bar',
+					data: [80, 90, 85, 70, 75, 70],
+			}]
+		},
+		datelist: '',
+		workdate: []
+		}
+  },
+  beforeCreate: function () {
+    console.log('beforeCreate is triggered.')
+    let reqbody={
+      }
+      Service.Post('dataStatiList',reqbody)
+      .then(data => {
+		  this.datelist=data.data
+          console.log(data,data.data)
+		  let date=getDate('bz_wek')
+		let imcomelist=[]
+		// console.log(date)
+		for(var j=0;j<date.length;j++){
+		imcomelist[j]=this.getcom(this.datelist,date[j]);
+		}
+		console.log(imcomelist)
+		this.workdate=imcomelist
+      })
+      .catch(error => console.log(error))
+  },
+  created: function(){
+  },
+  updated:function(){
+	console.log('updated');
+	console.log('work',this.workdate)
+	var line = echarts.init(document.getElementById('line'));
+	var optione2={
 					title: {
-							text: '堆叠区域图'
+							text: '访客记录'
 					},
 					tooltip : {
 							trigger: 'axis',
@@ -58,12 +91,19 @@ export default {
 							}
 					},
 					legend: {
-							data:['视频广告','直接访问','搜索引擎']
+							data:['直接访问']
 					},
 					toolbox: {
 							feature: {
 									saveAsImage: {}
 							}
+					},
+					lineStyle: {
+						normal: {
+						type: 'solid',
+						color:"#F96C43",
+						opacity :"0.5"
+						}
 					},
 					grid: {
 							left: '3%',
@@ -73,56 +113,57 @@ export default {
 					},
 					xAxis : [
 							{
-									type : 'category',
-									boundaryGap : false,
-									data : ['周一','周二','周三','周四','周五','周六','周日']
+								type : 'category',
+								boundaryGap : false,
+								data : ['周一','周二','周三','周四','周五','周六','周日']
 							}
 					],
 					yAxis : [
 							{
-									type : 'value'
+								type : 'value'
 							}
 					],
 					series : [
 							{
-									name:'视频广告',
-									type:'line',
-									stack: '总量',
-									areaStyle: {normal: {}},
-									data:[150, 232, 201, 154, 190, 330, 410]
-							},
-							{
-									name:'直接访问',
-									type:'line',
-									stack: '总量',
-									areaStyle: {normal: {}},
-									data:[320, 332, 301, 334, 390, 330, 320]
-							},
-							{
-									name:'搜索引擎',
-									type:'line',
-									stack: '总量',
-									label: {
-											normal: {
-													show: true,
-													position: 'top'
-											}
-								},
-								areaStyle: {normal: {}},
-								data:[820, 932, 901, 934, 1290, 1330, 1320]
+								name:'直接访问',
+								type:'line',
+								stack: '总量',
+								areaStyle: {normal: {
+									color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+										offset: 0,
+										color: 'rgba(249,108,67, 1)'
+									}, {
+										offset: 1,
+										color: 'rgba(249,108,67, 0.9)'
+									}])
+								}},
+								data:this.workdate
 							}
 					]
     	}
-		}
+	line.setOption(optione2);
   },
   methods: {
-    
+    getcom:function(allincom,time){
+        var arr={};
+        var incomAmount=[];
+        var acount=0;
+        for(var i=0;i<allincom.length;i++){
+			// console.log(parseInt(allincom[i].createTime),time.start,time.end)
+          if(parseInt(allincom[i].createTime)>=time.start&&parseInt(allincom[i].createTime)<=time.end){
+              incomAmount.push(allincom[i]);
+          }
+        }
+        arr['incomAmount']=incomAmount;
+        arr['incomeDate']=time;
+        return arr['incomAmount'].length;
+      }
   },
-	mounted (){
+  mounted (){
 			var bar = echarts.init(document.getElementById('bar'));
 			bar.setOption(this.optione1);
-			var line = echarts.init(document.getElementById('line'));
-			line.setOption(this.optione2);
+			// var line = echarts.init(document.getElementById('line'));
+			// line.setOption(this.optione2);
   }
 }
 </script>

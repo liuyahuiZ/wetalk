@@ -74,13 +74,13 @@
         </div>
     </div>
 
-    <div class="box-flex width-100 margin-auto margin-top-2 padding-top-5 padding-bottom-5 bg-green text-align-center flex-justify-center flex-items-center">
+    <div class="box-flex width-100 margin-auto margin-top-2 padding-top-5 padding-bottom-5 bg-69cb89 text-align-center flex-justify-center flex-items-center">
         <div class="line-height-30 font-size-26 lineThrou textclolor-white">My Skill</div>
     </div>
-     <div class="box-flex width-100 bg-green text-align-center margin-auto padding-bottom-5 flex-direction-row flex-justify-center flex-items-center">
+     <div class="box-flex width-100 bg-69cb89 text-align-center margin-auto padding-bottom-5 flex-direction-row flex-justify-center flex-items-center">
           <div class="flex-direction-column">
             <!--<mu-circular-progress mode="determinate" class="margin-right-1" :size="120" :value="95" :strokeWidth="10" color="#05A762" />-->
-						<el-progress type="circle" class="margin-right-1" :percentage="75"></el-progress>
+						<el-progress type="circle" class="margin-right-1" :percentage="80"></el-progress>
             <span>JavaScript</span>
           </div>
 					<div class="flex-direction-column">
@@ -139,7 +139,7 @@ export default {
       }
       Service.Post('PictureList',reqbody)
       .then(data => {
-          console.log(data,data.data)
+          console.log("pictureList",data)
           this.banners = data.data
       })
       .catch(error => console.log(error))
@@ -154,6 +154,18 @@ export default {
       })
       .catch(error => console.log(error))
   },
+  created: function(){
+    let msg = localStorage.getItem("wetalks_user");
+    if(msg){
+      console.log(msg)
+      this.dataSati()
+    }else{
+      let tmp_name = (Date.parse(new Date())/1000);
+      tmp_name = 'wetalksuser-' + tmp_name + '-' + (Math.round(Math.random()*9999));
+      localStorage.setItem("wetalks_user",tmp_name);
+      this.dataSati()
+    }
+  },
   methods: {
     add: function () {
       let item = {thecolor: ''}
@@ -167,6 +179,16 @@ export default {
     },
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
+    },
+    dataSati () {
+      let reqbody={
+        "wetalks_user" : localStorage.getItem("wetalks_user")
+      }
+      Service.Post('dataStati',reqbody)
+      .then(data => {
+          console.log(data,data.data)
+          this.banners = data.data
+      })
     }
   }
 }

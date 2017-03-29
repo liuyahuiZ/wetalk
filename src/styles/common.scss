@@ -169,7 +169,7 @@ $position-map: (
 }
 /*backgound-color*/
 @each $bgname,$color in (bg-home,#e8f5fa),(bg-bar,#51b0d6),(bg-show,#fff),(bg-del,#ff5757),(bg-top-bf,#fff0f0),(bg-bar-deep, #51afd6),(bg-top-rig,#38c49f),(bg-green,#33cd75),(bg-list-index,#fff7f8),(bg-gray,#d9d9d9),(bg-button-red,#f95b0f),(bg-yellow,#f7d173),(bg-f8b55e,#f8b55e),(bg-f6b45a,#f6b45a),(bg-7ecef4,#7ecef4),(bg-e9f5fa,#e9f5fa),(bg-e3f9ff,#e3f9ff),(bg-eee,#eee),(bg-button-green,#34cf75),(bg-button-gray, #999),(bg-activity,#ee4a41),(bg-activity-status,#ea3f21),
-(bg-efeff4,#f5f5f5),(bg-51b0d6,#51b0d6),(bg-ea3a3a,#ea3a3a),(bg-ccc,#ccc),(bg-333,#333){
+(bg-efeff4,#f5f5f5),(bg-51b0d6,#51b0d6),(bg-ea3a3a,#ea3a3a),(bg-ccc,#ccc),(bg-333,#333),(bg-69cb89,#69cb89){
  .#{$bgname}{background-color: $color;}
 }
 /*border-color*/
@@ -397,6 +397,7 @@ $align-self: auto,flex-start,flex-end,center,baseline,stretch;
 .bar-footer{height: 60px}
 .display_none{display: none;}
 .scroll-content .content{padding: 0px!important;height: 100%;}
+.detailContent img{width:100%}
 
 @media only screen and (min-width: 900px){
    .bannerHeight,.bannerHeight .el-carousel__container{
