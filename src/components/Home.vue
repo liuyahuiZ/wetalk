@@ -100,7 +100,7 @@
     <div class="box-flex width-100 margin-auto margin-top-2 padding-top-5 padding-bottom-5 text-align-center flex-justify-center flex-items-center">
         <div class="line-height-30 font-size-26 lineThrou">Personal Profile</div>
     </div>
-    <div class="box-flex width-100 text-align-center margin-auto padding-bottom-5 flex-direction-row flex-justify-center flex-items-center">
+    <div class="box-flex width-100 text-align-center margin-auto padding-all padding-bottom-5 perenContent flex-justify-center flex-items-center">
       <div class="box-flex flex-1 flex-direction-column flex-justify-center flex-items-center">
         <div class="box-flex width-100 flex-direction-row">
           <div class="box-flex flex-1 flex-justify-flex-end height-40 line-height-40">

@@ -420,6 +420,7 @@ $align-self: auto,flex-start,flex-end,center,baseline,stretch;
 			height:400px;
 		}
 		.img-right{margin-top:1%}
+	.perenContent{flex-direction: row}
 }
 @media only screen and (min-width: 600px) and (max-width: 900px){
    .bannerHeight,.bannerHeight .el-carousel__container{
@@ -439,6 +440,7 @@ $align-self: auto,flex-start,flex-end,center,baseline,stretch;
 			height:400px;
 		}
 		.img-right{margin-top:3%}
+		.perenContent{flex-direction: row}
 }
 @media only screen and (min-width: 300px) and (max-width: 600px){
    .bannerHeight,.bannerHeight .el-carousel__container{
@@ -470,7 +472,8 @@ $align-self: auto,flex-start,flex-end,center,baseline,stretch;
 			width:350px;
 			height:220px;
 		}
-		.images-half{width: 100%;}
-		.img-right{margin-top:5%}
+	.images-half{width: 100%;}
+	.img-right{margin-top:5%}
+	.perenContent{flex-direction: column}
 }
 
