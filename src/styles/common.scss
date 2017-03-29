@@ -398,7 +398,10 @@ $align-self: auto,flex-start,flex-end,center,baseline,stretch;
 .display_none{display: none;}
 .scroll-content .content{padding: 0px!important;height: 100%;}
 .detailContent img{width:100%}
-
+.imground{
+	width:150px;height:150px;
+	border-radius:200px;
+}
 @media only screen and (min-width: 900px){
    .bannerHeight,.bannerHeight .el-carousel__container{
 		 height:450px
@@ -407,7 +410,7 @@ $align-self: auto,flex-start,flex-end,center,baseline,stretch;
 		 font-size: 120%;
 	 }
 	 .tirtleFont{
-		 font-size: 160%;
+		 font-size: 140%;
 	 }
 	 .contentFont{
 		 font-size: 100%;
@@ -426,7 +429,7 @@ $align-self: auto,flex-start,flex-end,center,baseline,stretch;
 		 font-size: 120%;
 	 }
 	 .tirtleFont{
-		 font-size: 160%;
+		 font-size: 140%;
 	 }
 	 .contentFont{
 		 font-size: 100%;

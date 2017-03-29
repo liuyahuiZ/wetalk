@@ -77,7 +77,7 @@
     <div class="box-flex width-100 margin-auto margin-top-2 padding-top-5 padding-bottom-5 bg-69cb89 text-align-center flex-justify-center flex-items-center">
         <div class="line-height-30 font-size-26 lineThrou textclolor-white">My Skill</div>
     </div>
-     <div class="box-flex width-100 bg-69cb89 text-align-center margin-auto padding-bottom-5 flex-direction-row flex-justify-center flex-items-center">
+    <div class="box-flex width-100 bg-69cb89 text-align-center margin-auto padding-top-2 padding-bottom-10 flex-direction-row flex-justify-center flex-items-center">
           <div class="flex-direction-column">
             <!--<mu-circular-progress mode="determinate" class="margin-right-1" :size="120" :value="95" :strokeWidth="10" color="#05A762" />-->
 						<el-progress type="circle" class="margin-right-1" :percentage="80"></el-progress>
@@ -95,7 +95,45 @@
 						<el-progress type="circle" class="margin-right-1" :percentage="65"></el-progress>
 						<span>React</span>
 					</div>
-			</div>
+		</div>
+
+    <div class="box-flex width-100 margin-auto margin-top-2 padding-top-5 padding-bottom-5 text-align-center flex-justify-center flex-items-center">
+        <div class="line-height-30 font-size-26 lineThrou">Personal Profile</div>
+    </div>
+    <div class="box-flex width-100 text-align-center margin-auto padding-bottom-5 flex-direction-row flex-justify-center flex-items-center">
+      <div class="box-flex flex-1 flex-direction-column flex-justify-center flex-items-center">
+        <div class="box-flex width-100 flex-direction-row">
+          <div class="box-flex flex-1 flex-justify-flex-end height-40 line-height-40">
+            <span class="ion-happy-outline font-size-16"></span>
+          </div>
+          <div class="box-flex flex-3 height-40 line-height-40 padding-left-3">{{userInfo.username}}</div>
+        </div>
+        <div class="box-flex width-100 flex-direction-row">
+          <div class="box-flex flex-1 flex-justify-flex-end height-40 line-height-40">
+            <span class="ion-ios-email-outline font-size-16"></span>
+          </div>
+          <div class="box-flex flex-3 height-40 line-height-40 padding-left-3">{{userInfo.email}}</div>
+        </div>
+        <div class="box-flex width-100 flex-direction-row">
+          <div class="box-flex flex-1 flex-justify-flex-end height-40 line-height-40">
+            <span class="ion-ios-telephone-outline font-size-16"></span>
+          </div>
+          <div class="box-flex flex-3 height-40 line-height-40 padding-left-3">{{userInfo.phone}}</div>
+        </div>
+        <div class="box-flex width-100 flex-direction-row">
+          <div class="box-flex flex-1 flex-justify-flex-end height-40 line-height-40">
+            <span class="ion-ios-list-outline font-size-16"></span>
+          </div>
+          <div class="box-flex flex-3 padding-left-3 text-align-left" v-html="userInfo.content"></div>
+        </div>
+      </div>
+      <div class="box-flex flex-1 flex-direction-column flex-justify-center flex-items-center">
+        <div class="imground">
+        <img class="imground" v-if="userInfo.personfile" v-bind:src="(config.api+userInfo.personfile.personimg[0].photopath)">
+        </div>
+      </div>
+    </div>
+
     <div class="box-flex height-200 bg-333 flex-direction-column flex-justify-center flex-items-center" >
         <div class="line-height-30 tirtleFont textclolor-black-low">© 2015 All rights reserved. Design and development by Liu Yahui</div>
         <div class="line-height-30 iconFont textclolor-white ">Projects made with </div>
@@ -127,6 +165,7 @@ export default {
       dialog: false,
       banners: [],
       HomeArticle: [],
+      userInfo: {},
       config: configs.config,
     }
   },
@@ -139,7 +178,7 @@ export default {
       }
       Service.Post('PictureList',reqbody)
       .then(data => {
-          console.log("pictureList",data)
+          // console.log("pictureList",data)
           this.banners = data.data
       })
       .catch(error => console.log(error))
@@ -149,8 +188,17 @@ export default {
       }
       Service.Post('ArticleList',reqabody)
       .then(data => {
-          console.log(data,data.data)
           this.HomeArticle = data.data
+      })
+      .catch(error => console.log(error))
+
+      let reqbbody={
+        "username" : "lyh"
+      }
+      Service.Post('finduser',reqbbody)
+      .then(data => {
+          console.log(data,data.data)
+          this.userInfo=data.data[0]
       })
       .catch(error => console.log(error))
   },
