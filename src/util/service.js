@@ -15,15 +15,15 @@ class Service {
               console.log('发送前')
           },
           success:function(data,textStatus,jqXHR){
-              console.log(data)
-              console.log(textStatus)
-              console.log(jqXHR)
+            //   console.log(data)
+            //   console.log(textStatus)
+            //   console.log(jqXHR)
               resolve(data)
           },
           error:function(xhr,textStatus){
               console.log('错误')
-              console.log(xhr)
-              console.log(textStatus)
+            //   console.log(xhr)
+            //   console.log(textStatus)
               reject(textStatus)
           },
           complete:function(){
@@ -47,19 +47,19 @@ class Service {
           timeout:5000,    //超时时间
           dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
           beforeSend:function(xhr){
-              console.log(xhr)
+            //   console.log(xhr)
               console.log('发送前')
           },
           success:function(data,textStatus,jqXHR){
-              console.log(data)
-              console.log(textStatus)
-              console.log(jqXHR)
+            //   console.log(data)
+            //   console.log(textStatus)
+            //   console.log(jqXHR)
               resolve(data)
           },
           error:function(xhr,textStatus){
-              console.log('错误')
-              console.log(xhr)
-              console.log(textStatus)
+            //   console.log('错误')
+            //   console.log(xhr)
+            //   console.log(textStatus)
               reject(textStatus)
           },
           complete:function(){
