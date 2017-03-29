@@ -40,7 +40,7 @@ class Service {
       }
       let reqData = 'reqContent='+encodeURI(JSON.stringify(msg));
       $.ajax({
-          url:'http://47.88.2.72:2016/'+api,
+          url:'http://localhost:2016/'+api,
           type:'POST', //GET
           async:true,    //或false,是否异步
           data:reqData,
