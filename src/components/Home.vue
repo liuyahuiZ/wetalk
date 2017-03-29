@@ -1,7 +1,7 @@
 <template>
 <div class="home">
     <el-carousel class="bannerHeight">
-      <el-carousel-item v-for="(B,index) in banners">
+      <el-carousel-item v-for="(B,index) in banners" key={{index}}>
         <img class="images-con" v-bind:src="(config.api+B.img_group[0].photopath)">
       </el-carousel-item>
     </el-carousel>
@@ -187,7 +187,6 @@ export default {
       Service.Post('dataStati',reqbody)
       .then(data => {
           console.log(data,data.data)
-          this.banners = data.data
       })
     }
   }
