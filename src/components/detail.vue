@@ -7,7 +7,7 @@
         <div class="text-align-center margin-top-2">
           <img class="images-con border-radius-9" v-bind:src="(config.api+article.img_group[0].photopath)">
         </div>
-        <div v-html="article.content"></div>
+        <div class="detailContent" v-html="article.content"></div>
       </div>
       <div class="box-flex width-80 margin-auto margin-top-2 flex-direction-column flex-justify-center flex-items-center">
         <div class="box-flex width-100 flex-direction-row">

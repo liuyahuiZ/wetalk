@@ -1,6 +1,5 @@
 <template>
-  <div id="secondcomponent">
-    <!--<teheader tirtle='second'></teheader>-->
+  <div id="Contact">
     <div class="fixed home zindex-d10 top-0"> 
         <img class="images-allhei" src="../Img/bg3.jpg" lazy="loaded">
     </div>
@@ -12,21 +11,17 @@
       <div class="box-flex width-80 margin-auto margin-top-2 flex-direction-column">
         <div class="box-flex">
           <div class="flex-1 padding-all">
-            <el-input v-model="input" placeholder="请输入姓名"></el-input>
+            <el-input v-model="name" placeholder="请输入姓名"></el-input>
           </div>
-          <div class="flex-1 padding-all"><el-input v-model="input" placeholder="请输入Email"></el-input></div>
+          <div class="flex-1 padding-all"><el-input v-model="email" placeholder="请输入Email"></el-input></div>
         </div>
         <div class="box-flex">
-          <div class="flex-1 padding-all"><el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="textarea"></el-input></div>
+          <div class="flex-1 padding-all"><el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="content"></el-input></div>
         </div>
         <div class="box-flex flex-justify-center flex-items-center padding-all">
-            <el-button type="primary" size="large" class="iconFont">Send Message</el-button>
+            <el-button type="primary" size="large" class="iconFont" @click="doCommit">Send Message</el-button>
         </div>
       </div>
-      <mt-cell :title="animatedNumber">
-        <!--<img slot="icon" src="../assets/logo.png" width="24" height="24">-->
-        <input class="input-all" v-model.number="number" type="number" step="20">
-      </mt-cell>
 
     </div>
 
@@ -34,46 +29,39 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import teheader from './teheader.vue'
-import { Field, Cell } from 'mint-ui'
-import TWEEN from 'tween.js'
+import Service from '@/util/service'
 
-Vue.component(Field.name, Field)
-Vue.component(Cell.name, Cell)
 export default {
   data () {
     return {
-      author: '微信公众号 jinkey-love',
       topStatus: '',
       articles: [],
       number: 9999,
       animatedNumber: 0,
-      input: '',
-      textarea: ''
-    }
-  },
-  watch: {
-    number: function (newValue, oldValue) {
-      var vm = this
-      function animate (time) {
-        window.requestAnimationFrame(animate)
-        TWEEN.update(time)
-      }
-      new TWEEN.Tween({ tweeningNumber: oldValue })
-        .easing(TWEEN.Easing.Quadratic.Out)
-        .to({ tweeningNumber: newValue }, 500)
-        .onUpdate(function () {
-          vm.animatedNumber = this.tweeningNumber.toFixed(0)
-        })
-        .start()
-      animate()
+      name: '',
+      email: '',
+      content: ''
     }
   },
   methods: {
+    doCommit () {
+      console.log('textarea',this.textarea)
+      let reqbody={
+        "username" : this.name,
+        "email" : this.email,
+        "content" : this.content,
+        "tirtle": this.name+"say hi",
+        "toEmail" : "liuyahui991@gmail.com"
+      }
+      Service.Post('sendEmail',reqbody)
+      .then(data => {
+          console.log(data)
+          this.$message(data.message);
+      })
+      .catch(error => console.log(error))
+    },
   },
   components: {
-    teheader
   }
 }
 </script>
