@@ -137,23 +137,14 @@
     <div class="box-flex height-200 bg-333 flex-direction-column flex-justify-center flex-items-center" >
         <div class="line-height-30 tirtleFont textclolor-black-low">© 2015 All rights reserved. Design and development by Liu Yahui</div>
         <div class="line-height-30 iconFont textclolor-white ">Projects made with </div>
-        <div class="width-80 margin-auto text-align-center flex-justify-center flex-items-center flex-content-center">
-            <a href="https://github.com/liuyahuiZ">
-            <span class="flex-1 ion-social-github font-size-20 textclolor-white margin-right-3"></span>
-            </a>
-            <span class="flex-1 ion-social-twitter font-size-20 textclolor-white margin-right-3"></span>
-            <span class="flex-1 ion-social-facebook font-size-20 textclolor-white margin-right-3"></span>
-            <a href="Mailto:liuyahui991@gmail.com">
-            <span class="flex-1 ion-social-googleplus font-size-20 textclolor-white margin-right-3"></span>
-            </a>
-            <span class="flex-1 ion-social-dribbble-outline font-size-20 textclolor-white margin-right-3"></span>
-        </div>
+        <mylink></mylink>
     </div>
 </div>
 </template>
 <script>
 import Service from '@/util/service'
 import configs from '@/util/configs'
+import mylink from '@/components/mylink'
 export default {
   data () {
     return {
@@ -237,6 +228,9 @@ export default {
           console.log(data,data.data)
       })
     }
+  },
+  components: {
+    mylink
   }
 }
 </script>
