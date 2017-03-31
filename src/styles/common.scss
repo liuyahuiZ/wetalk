@@ -215,6 +215,11 @@ $align-self: auto,flex-start,flex-end,center,baseline,stretch;
 	.flex-self-#{$alignf}{align-self:#{$alignf};}
 }
 
+.unselect {
+	-moz-user-select:none;
+      -webkit-user-select:none;
+      user-select:none; 
+}
 //animation
 .example-enter {
   opacity: 0.01;
@@ -404,7 +409,7 @@ $align-self: auto,flex-start,flex-end,center,baseline,stretch;
 }
 @media only screen and (min-width: 900px){
    .bannerHeight,.bannerHeight .el-carousel__container{
-		 height:450px
+		 height:550px
 	 }
 	 .iconFont{
 		 font-size: 120%;
@@ -421,6 +426,7 @@ $align-self: auto,flex-start,flex-end,center,baseline,stretch;
 		}
 		.img-right{margin-top:1%}
 	.perenContent{flex-direction: row}
+	.images-allhei{width:100%;height: auto}
 }
 @media only screen and (min-width: 600px) and (max-width: 900px){
    .bannerHeight,.bannerHeight .el-carousel__container{

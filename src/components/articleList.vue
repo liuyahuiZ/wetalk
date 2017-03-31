@@ -12,8 +12,8 @@
             <router-link :to="('/detail/'+n._id)">
             <div class="tirtleFont line-height-40">{{n.tirtle}}</div>
             </router-link>
-            <div class="contentFont line-height-30">{{n.info}}</div>
-            <div class="width-100 text-align-left margin-top-2 margin-bottom-3 flex-justify-center ">
+            <div class="contentFont line-height-30 unselect">{{n.info}}</div>
+            <div class="width-100 text-align-left margin-top-2 margin-bottom-3 flex-justify-center unselect">
                 <span class="flex-1 ion-eye iconFont textclolor-333 margin-right-1"></span>
                 <span class="flex-1 iconFont textclolor-333 margin-right-3">({{n.sea}})</span>
                 <span class="flex-1 ion-heart iconFont textclolor-333 margin-right-1"></span>
@@ -22,10 +22,11 @@
                 <span class="flex-1 iconFont textclolor-333 margin-right-3">({{n.comment?n.comment.length:0}})</span>
             </div>
           </div>
-          <div class="flex-3 img-right">
+          <div class="flex-3 img-right unselect">
             <img class="images-con border-radius-9" v-bind:src="(config.api+n.img_group[0].photopath)">
           </div>
         </div>
+        <div class="box-flex width-100 line-height-50 flex-justify-center text-align-center" v-if="pageIndex<allPage">下拉加载更多</div>
         <div class="loadmore-bottom" v-if="!showloading" v-bind:class="{ transroute: !rotate, transnone: rotate }">↓</div>
         <div class="loadmore-bottom" v-if="showloading"><div class="spanner span-inner"></div></div>
       </div>
@@ -54,24 +55,29 @@ export default {
       refresh: false,
       showloading: false,
       deny: 0,
-      limitHight: 190,
-      limitlow: -190,
-      lineNem: 8,
+      limitHight: 290,
+      limitlow: -290,
       articleList: [],
-      config: configs.config
+      config: configs.config,
+      pageIndex: 1,
+      pageNum: 5,
+      allPage: 0,
     }
   },
-  beforeCreate: function () {
+  created: function () {
     console.log(configs,configs.config.api)
     console.log('beforeCreate is triggered.')
+    const self = this
     let reqbody={
-      "pageNum":1,
-      "numPerPage":10,
+      "pageNum":this.pageIndex,
+      "numPerPage":this.pageNum,
     }
     Service.Post('ArticleList',reqbody)
     .then(data => {
         // console.log(data,data.data)
         this.articleList = data.data
+        self.pageIndex = data.page.pageIndex
+        self.allPage = data.page.allpage
     })
     .catch(error => console.log(error))
   },
@@ -139,7 +145,6 @@ export default {
               console.log(result)
               o.refresh = false
               o.rebac(o)
-              o.lineNem = 8
             })
           } else {
             o.rebac(o)
@@ -149,11 +154,10 @@ export default {
             o.showloading = true // 显示loading
             o.moreload(o)
             // 获取数据
-            this.getdate(o).then(function (result) {
+            this.getMoredate(o).then(function (result) {
               console.log(result)
               o.showloading = false
               o.rebac(o)
-              o.lineNem += 5
             })
           } else {
             o.rebac(o)
@@ -192,12 +196,45 @@ export default {
       })
     },
     getdate: function () {
+      const self=this
       return new Promise(function (resolve, reject) {
-        var data = '123'
-        setTimeout(function () {
-          console.log('456')
-          resolve(data)
-        }, 1000)
+        let reqbody={
+          "pageNum":1,
+          "numPerPage":self.pageNum,
+        }
+        Service.Post('ArticleList',reqbody)
+        .then(data => {
+            // console.log(data,data.data)
+            self.articleList = data.data
+            self.pageIndex = data.page.pageIndex
+            self.allPage = data.page.allpage
+            resolve(data.data)
+        })
+        .catch(error => console.log(error))
+      })
+    },
+    getMoredate: function () {
+      const self=this
+      return new Promise(function (resolve, reject) {
+        let page=self.pageIndex
+        if(self.pageIndex<=self.allPage){
+          page=self.pageIndex+1
+        }else{
+          return resolve(null)
+        }
+        let reqbody={
+          "pageNum":page,
+          "numPerPage":self.pageNum,
+        }
+        Service.Post('ArticleList',reqbody)
+        .then(data => {
+            // console.log(data,data.data)
+            self.articleList.push(...data.data)
+            self.pageIndex = data.page.pageIndex
+            self.allPage = data.page.allpage
+            resolve(data.data)
+        })
+        .catch(error => console.log(error))
       })
     }
   }

@@ -18,7 +18,7 @@
         <div class="flex-1 height-30 text-align-left flex-self-center ">
             <span class="ion-navicon-round font-size-26" @click="openBottomSheet"></span>
         </div>
-        <div class="flex-3 height-30 height-50 line-height-50 flex-direction-row flex-items-flex-start">
+        <div class="flex-3 height-30 height-50 line-height-50 flex-direction-row flex-items-flex-start unselect">
             <div class="flex-2"><img class="height-100" src="../Img/logo_b.png" lazy="loaded"></div>
         </div>
         <div class="flex-1 height-30 text-align-right flex-self-center">
@@ -63,17 +63,14 @@
           connext with me
         </div>
         <div class="width-100 text-align-center margin-top-2 margin-bottom-3 flex-justify-center  flex-items-center flex-content-center bg-333">
-            <span class="flex-1 ion-social-github font-size-20 textclolor-white margin-right-3"></span>
-            <span class="flex-1 ion-social-twitter font-size-20 textclolor-white margin-right-3"></span>
-            <span class="flex-1 ion-social-facebook font-size-20 textclolor-white margin-right-3"></span>
-            <span class="flex-1 ion-social-googleplus font-size-20 textclolor-white margin-right-3"></span>
-            <span class="flex-1 ion-social-dribbble-outline font-size-20 textclolor-white margin-right-3"></span>
+          <mylink></mylink>
         </div>
       </mu-list>
     </mu-bottom-sheet>
   </div>
 </template>
 <script>
+import mylink from '@/components/mylink'
 export default {
   data () {
     return {
@@ -141,6 +138,7 @@ export default {
     this.title.push({'name': this.totitle})
   },
   components: {
+    mylink
   }
 }
 </script>

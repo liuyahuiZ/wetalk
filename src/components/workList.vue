@@ -7,7 +7,7 @@
       <div class="content" :style="contentPosition">
         <div class="loadmore-top" v-if="!refresh" v-bind:class="{ transroute: rotate, transnone: !rotate }">↓</div>
         <div class="loadmore-top" v-if="refresh"><div class="spanner span-inner" ></div></div>
-        <div class="box-flex width-80 margin-auto margin-top-2 flex-wrap">
+        <div class="box-flex width-80 margin-auto margin-top-2 flex-wrap unselect">
           <div class="box-flex images-half flex-direction-column"  >
             <div class="padding-all masonry" v-for="(L,index) in workListLeft">
             <img class="images-con imgpic" v-bind:src="(config.api+L.img_group[0].photopath)">
@@ -18,9 +18,11 @@
             <img class="images-con imgpic" v-bind:src="(config.api+R.img_group[0].photopath)">
             </div>
           </div>
+          <div class="box-flex width-100 line-height-50 flex-justify-center text-align-center" v-if="pageIndex<allPage">下拉加载更多</div>
         </div>
         <div class="loadmore-bottom" v-if="!showloading" v-bind:class="{ transroute: !rotate, transnone: rotate }">↓</div>
         <div class="loadmore-bottom" v-if="showloading"><div class="spanner span-inner"></div></div>
+        
       </div>
       <!--<svg class="bg" width="420" height="260">
       <path :d="headerPath" fill="#3F51B5"></path>
@@ -58,23 +60,32 @@ export default {
       lineNem: 8,
       workListLeft: [],
       workListRight: [],
-      config: configs.config
+      config: configs.config,
+      pageIndex: 1,
+      pageNum: 6,
+      allPage: 0,
     }
   },
   components: {
     teheader
   },
-  beforeCreate: function () {
+  created: function () {
     console.log('beforeCreate is triggered.')
-    let reqbody={}
+    const self = this
+    let reqbody={
+      "pageNum":this.pageIndex,
+      "numPerPage":this.pageNum,
+    }
     Service.Post('PictureList',reqbody)
     .then(data => {
         console.log(data,data.data)
+        self.pageIndex = data.page.pageIndex
+        self.allPage = data.page.allpage
         for(var i=0;i<data.data.length;i++){
           if(i%2==0){
-            this.workListLeft.push(data.data[i])
+            self.workListLeft.push(data.data[i])
           }else{
-            this.workListRight.push(data.data[i])
+            self.workListRight.push(data.data[i])
           }
         }
     })
@@ -141,7 +152,6 @@ export default {
               console.log(result)
               o.refresh = false
               o.rebac(o)
-              o.lineNem = 8
             })
           } else {
             o.rebac(o)
@@ -151,11 +161,10 @@ export default {
             o.showloading = true // 显示loading
             o.moreload(o)
             // 获取数据
-            this.getdate(o).then(function (result) {
+            this.loadMoreDate(o).then(function (result) {
               console.log(result)
               o.showloading = false
               o.rebac(o)
-              o.lineNem += 5
             })
           } else {
             o.rebac(o)
@@ -193,28 +202,58 @@ export default {
         friction: 280
       })
     },
-    loadDitail () {
-      let reqbody={}
-      Service.Post('PictureList',reqbody)
-      .then(data => {
-          console.log(data,data.data)
-          for(var i=0;i<data.data.length;i++){
-            if(i%2==0){
-              this.workListLeft.push(data.data[i])
-            }else{
-              this.workListRight.push(data.data[i])
+    loadMoreDate () {
+      const self=this
+      return new Promise(function (resolve, reject) {
+        let page=self.pageIndex
+        if(self.pageIndex<=self.allPage){
+          page=self.pageIndex+1
+        }else{
+          return resolve(null)
+        }
+        let reqbody={
+          "pageNum":page,
+          "numPerPage":self.pageNum,
+        }
+        Service.Post('PictureList',reqbody)
+        .then(data => {
+            // console.log(data,data.data)
+            self.pageIndex = data.page.pageIndex
+            self.allPage = data.page.allpage
+            for(var i=0;i<data.data.length;i++){
+              if(i%2==0){
+                self.workListLeft.push(data.data[i])
+              }else{
+                self.workListRight.push(data.data[i])
+              }
             }
-          }
+            resolve(data.data)
+        })
+        .catch(error => console.log(error))
       })
-      .catch(error => console.log(error))
     },
     getdate: function () {
+      const self=this
       return new Promise(function (resolve, reject) {
-        var data = '123'
-        setTimeout(function () {
-          console.log('456')
-          resolve(data)
-        }, 1000)
+        let reqbody={
+          "pageNum":1,
+          "numPerPage":self.pageNum,
+        }
+        Service.Post('PictureList',reqbody)
+        .then(data => {
+            // console.log(data,data.data)
+            self.pageIndex = data.page.pageIndex
+            self.allPage = data.page.allpage
+            for(var i=0;i<data.data.length;i++){
+            if(i%2==0){
+                self.workListLeft.push(data.data[i])
+              }else{
+                self.workListRight.push(data.data[i])
+              }
+            }
+            resolve(data.data)
+        })
+        .catch(error => console.log(error))
       })
     }
   }
