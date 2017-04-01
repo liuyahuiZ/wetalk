@@ -40,12 +40,42 @@ export default {
       animatedNumber: 0,
       name: '',
       email: '',
-      content: ''
+      content: '',
+      lockButton: false
     }
   },
   methods: {
     doCommit () {
-      console.log('textarea',this.textarea)
+      console.log(this.name)
+      if(this.lockButton==true){
+        this.$message({
+          message: '正在提交中。。。',
+          type: 'warning'
+        });
+        return false
+      }
+      if(this.name==''||this.name==null){
+        this.$message({
+          message: '请填写您的名称，以方便我称呼您',
+          type: 'warning'
+        });
+        return false
+      }
+      if(this.email==''||this.email==null){
+        this.$message({
+          message: '请填写您的邮箱，以方便我联系您',
+          type: 'warning'
+        });
+        return false
+      }
+      if(this.content==''||this.content==null){
+        this.$message({
+          message: '请写下内容',
+          type: 'warning'
+        });
+        return false
+      }
+      this.lockButton=true
       let reqbody={
         "username" : this.name,
         "email" : this.email,
@@ -57,8 +87,12 @@ export default {
       .then(data => {
           console.log(data)
           this.$message(data.message);
+          this.lockButton=false
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        this.lockButton=false
+        console.log(error)
+      })
     },
   },
   components: {

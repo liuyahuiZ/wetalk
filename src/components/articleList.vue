@@ -26,7 +26,7 @@
             <img class="images-con border-radius-9" v-bind:src="(config.api+n.img_group[0].photopath)">
           </div>
         </div>
-        <div class="box-flex width-100 line-height-50 flex-justify-center text-align-center" v-if="pageIndex<allPage">下拉加载更多</div>
+        <div class="box-flex width-100 line-height-50 flex-justify-center text-align-center" v-if="pageIndex<allPage">上拉加载更多</div>
         <div class="loadmore-bottom" v-if="!showloading" v-bind:class="{ transroute: !rotate, transnone: rotate }">↓</div>
         <div class="loadmore-bottom" v-if="showloading"><div class="spanner span-inner"></div></div>
       </div>
