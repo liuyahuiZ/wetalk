@@ -41,6 +41,7 @@ import { Spinner } from 'mint-ui'
 import Service from '@/util/service'
 import configs from '@/util/configs'
 import Vue from 'vue'
+import comE from '../util/CommtEmit.js'
 Vue.component(Spinner.name, Spinner)
 
 export default {
@@ -80,6 +81,11 @@ export default {
         self.allPage = data.page.allpage
     })
     .catch(error => console.log(error))
+
+    comE.$on('id-selected', function(id){
+      console.log(id)
+      console.log('on id-selected , brother comment call')
+    })
   },
   components: {
     teheader

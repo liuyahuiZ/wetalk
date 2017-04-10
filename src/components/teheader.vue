@@ -63,7 +63,7 @@
           connext with me
         </div>
         <div class="width-100 text-align-center margin-top-2 margin-bottom-3 flex-justify-center  flex-items-center flex-content-center bg-333">
-          <mylink></mylink>
+          <mylink v-on:ee="incrementTotal"></mylink>
         </div>
       </mu-list>
     </mu-bottom-sheet>
@@ -107,6 +107,10 @@ export default {
     },
     openBottomSheet () {
       this.bottomSheet = true
+    },
+    incrementTotal (i){
+      console.log(i)
+      console.log('call parent')
     }
   },
   watch: {
