@@ -1,16 +1,18 @@
 <template>
-    <div>
-    <div class="tirtles bg-e9f5fa padding-all relative overflow-hide">
-          <div class="list-cell" v-bind:class="{ unsurch: !focusStatus, surch: focusStatus }" @click="focus()">
-          <i class="mintui mintui-search float-left line-height-42"></i>
-          <input class="input-all tirtles-left" v-bind:class="{ unfocus: !focusStatus, focus: focusStatus }"
-             v-model="question" type="text" step="20" placeholder="搜索">
-          </div>
-          <span class="absolute line-height-42 right-d-5" v-bind:class="{ uncancle: !focusStatus, cancle: focusStatus }"  @click="blurs()">取消</span>
-    </div>
-    <div @click="blurs()" class="tirtles margin-top-2 padding-all" id="watch-example">
+    <div id="surch">
+      <div class="page-header-main">
+        <div class="box-flex  margin-auto margin-top-2 bg-e9f5fa padding-all relative overflow-hide">
+              <div class="box-flex surchip" v-bind:class="{ unsurch: !focusStatus, surch: focusStatus }" @click="focus()">
+              <i class="mintui mintui-search float-left line-height-42"></i>
+              <input class="input-all tirtles-left" v-bind:class="{ unfocus: !focusStatus, focus: focusStatus }"
+                v-model="question" type="text" step="20" placeholder="搜索">
+              </div>
+              <span class="absolute line-height-42 canclebtn" v-bind:class="{ uncancle: !focusStatus, cancle: focusStatus }"  @click="blurs()">取消</span>
+        </div>
+        <div @click="blurs()" class="tirtles margin-top-2 padding-all" id="watch-example">
           <p>{{ answer }}</p>
         </div>
+      </div>
     </div>
 </template>
 <script>
@@ -92,4 +94,8 @@ export default {
     right: 10px;
     transition: all .5s ease;
 }
+.canclebtn{
+
+}
+.surchip input:focus{background: #fff;	border: none;}
 </style>

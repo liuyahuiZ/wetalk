@@ -3,7 +3,9 @@
     <teheader :totitle='totitle' :fromtitle='fromtitle' :showbar='showBar' :name="transitionName"></teheader>
     <div class="page-content">
     <transition  :name="transitionName" :mode="transModule" >
+      <keep-alive>
       <router-view class="view"></router-view>
+      </keep-alive>
     </transition>
     </div>
     <!--<router-view class="view"></router-view>-->
