@@ -22,7 +22,9 @@
             <div class="flex-2"><img class="height-100" src="../Img/logo_b.png" lazy="loaded"></div>
         </div>
         <div class="flex-1 height-30 text-align-right flex-self-center">
+          <router-link to="/surch">
           <span class="ion-search font-size-26"></span>
+          </router-link>
         </div>
         </div>
     </div>
@@ -51,11 +53,17 @@
               My Blog
         </li>
         </router-link>
+        <router-link to="/chat">
+        <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
+              Chat coll
+        </li>
+        </router-link>
         <router-link to="/contact">
         <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
               Contact Me
         </li>
         </router-link>
+        
       </ul>
       
       <mu-list @itemClick="closeBottomSheet" class="bg-333">

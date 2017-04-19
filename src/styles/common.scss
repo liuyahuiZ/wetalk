@@ -118,6 +118,9 @@ $heightp-list:10,20,25,30,35,40,50,65,100;
 	.heightp-#{$heightp}{height:#{$heightp*1%};}
 }
 /*margin*/
+.padding-all{padding: 3%;}
+.padding-all-10x{padding: 10px;}
+.padding-all-15x{padding: 15px;}
 $breakpoint-map: (
     left-1: (p: left,v:1%),left-3: (p: left, v:3%), left-5: (p: left,v:5%),left-d-5: (p: left,v:5px),left-10: (p: left,v:10%),left-20x: (p: left,v:20px),left-30x: (p: left,v:30px),
     top-1: (p: top,v:1%),top-2: (p: top, v:3%), top-5: (p: top,v:5%),top-5x: (p: top,v:5px),top-10: (p: top,v:10%),top-d-10:(p: top,v:-10px),top-60x:(p: top,v:60px),top-120x:(p: top,v:120px),top-300x:(p: top,v:300px),
@@ -140,9 +143,6 @@ $breakpoint-map: (
            #{ map-get($map, p)} : map-get($map, v);
         }
 }
-.padding-all{padding: 3%;}
-.padding-all-10x{padding: 10px;}
-.padding-all-15x{padding: 15px;}
 .nopadding{padding: 0;}
 /*position_absolute*/
 .absolute{position: absolute;}
