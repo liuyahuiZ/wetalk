@@ -39,7 +39,7 @@ export default {
 			this.username = 'liuyahui';
 			
 			//连接websocket后端服务器
-			this.socket = io.connect('ws://localhost:3000');
+			this.socket = io.connect('ws://47.88.2.72:3000');
 			
 			//告诉服务器端有用户登录
 			this.socket.emit('login', {userid:this.userid, username:this.username});
