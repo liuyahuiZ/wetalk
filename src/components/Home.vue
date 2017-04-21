@@ -200,8 +200,10 @@ export default {
       this.dataSati()
     }else{
       let tmp_name = (Date.parse(new Date())/1000);
-      tmp_name = 'wetalksuser-' + tmp_name + '-' + (Math.round(Math.random()*9999));
-      localStorage.setItem("wetalks_user",tmp_name);
+      let userid = 'wetalksuser-' + tmp_name + '-' + (Math.round(Math.random()*9999));
+      let username = this.randomString(5) 
+      localStorage.setItem("wetalks_user",username);
+      localStorage.setItem("wetalks_user_id",userid);
       this.dataSati()
     }
   },
@@ -227,6 +229,16 @@ export default {
       .then(data => {
           console.log(data,data.data)
       })
+    },
+    randomString (len) {
+      len = len || 32;
+      let $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+      let maxPos = $chars.length;
+      let pwd = '';
+      for (let i = 0; i < len; i++) {
+        pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+      }
+      return pwd;
     }
   },
   components: {

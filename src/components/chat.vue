@@ -1,5 +1,14 @@
 <template>
     <div id="surch">
+    <el-popover ref="popover4" placement="top-start" width="300" trigger="click">
+           <el-tabs v-model="activeName" @tab-click="handleClick">
+                <el-tab-pane v-for="emoj in emojes" :label="emoj.name" :name="emoj.name" v-bind:key="emoj.name" >
+                    <div style="height:30px;width:30px;float:left" v-for="con in emoj.content" v-bind:key="con.name" @click="getEmoje(con,emoj.name)">
+                        <img style="height:25px;width:25px;" v-bind:src="(config.imgurl+emoj.name+'/'+con.name)" />
+                    </div>
+                </el-tab-pane>
+            </el-tabs>
+    </el-popover>
       <div class="page-header-main">
         <div class="box-flex width-80 margin-auto margin-top-2 flex-direction-row flex-justify-center">
             <span>当前讨论组在线人：</span><span class="margin-right-3" v-for="(val, key) in onlineUser">{{val}}</span>
@@ -11,8 +20,12 @@
                 <span >{{nowUser.username}}</span>
             </div>
             <div class="box-flex width-100 flex-direction-row">
-                <div class="box-flex flex-6 width-100 padding-all chat">
-                    <el-input type="textarea" :rows="2" placeholder="your message" v-model="textarea"></el-input>
+                <div class="box-flex flex-7 width-100 padding-all chat">
+                    <div style="width:100%;border:1px solid #666;border-radius:5px;" v-html="textarea" @focus="divfou" @blur="divblur($event)" tabindex='-1' contenteditable="true"></div>
+                    <!--<el-input type="textarea" :rows="2" placeholder="your message" v-model="textarea"></el-input>-->
+                </div>
+                <div class="box-flex flex-1 width-100 padding-all chat">
+                    <span class="ion-android-happy font-size-18" v-popover:popover4></span>
                 </div>
                 <div class="box-flex flex-1  flex-items-flex-end flex-justify-center margin-bottom-3">
                     <el-button type="primary" @click="doCommit" >发送</el-button>
@@ -25,18 +38,23 @@
 </template>
 <script>
 import '@/util/socket.io'
+import emoje from '@/util/emoje' 
+import configs from '@/util/configs'
 let msgShow=document.getElementById("message")
 export default {
   data () {
     return {
       textarea: 'Hello world',
       onlineUser:{},
-      nowUser:{}
+      nowUser:{},
+      emojes: emoje.emoje,
+      activeName: 'al',
+      config: configs.config,
     }
   },
   beforeCreate: function () {
-            this.userid = localStorage.getItem("wetalks_user");
-			this.username = 'liuyahui';
+            this.userid = localStorage.getItem("wetalks_user_id");
+			this.username = localStorage.getItem("wetalks_user");
 			
 			//连接websocket后端服务器
 			this.socket = io.connect('ws://47.88.2.72:3000');
@@ -60,7 +78,7 @@ export default {
   created: function(){
 			//监听消息发送
 			this.socket.on('message', function(obj){
-				var isme = (obj.userid == localStorage.getItem("wetalks_user")) ? true : false;
+				var isme = (obj.userid == localStorage.getItem("wetalks_user_id")) ? true : false;
 				var contentDiv = '<div>'+obj.content+'</div>';
 				var usernameDiv = '<span>'+obj.username+'</span>';
 				
@@ -80,8 +98,8 @@ export default {
         let content=this.textarea
         if(this.textarea != ''){
 				var obj = {
-					'userid': localStorage.getItem("wetalks_user"),
-					'username': 'liuyahui',
+					'userid': localStorage.getItem("wetalks_user_id"),
+					'username': localStorage.getItem("wetalks_user"),
 					'content': content
 				};
 				this.socket.emit('message', obj);
@@ -95,7 +113,7 @@ export default {
     },
     updateSystom: function(item,action){
         this.onlineUser=item.onlineUsers
-        this.nowUser=item.user
+        this.nowUser={'userid':localStorage.getItem("wetalks_user_id"),'username':localStorage.getItem("wetalks_user")}
         let html = '';
         html += '<div class="msg-system">';
         html += item.user.username;
@@ -108,6 +126,22 @@ export default {
     },
     scrollToBottom :function(){
         window.scrollTo(0, document.getElementById("message").clientHeight);
+    },
+    handleClick(tab, event) {
+        console.log(tab, event);
+    },
+    getEmoje(emg,fl){
+        console.log(emg,fl)
+        console.log(this.textarea)
+        var txt=this.textarea+'<img style="height:25px;width:25px;" src="'+this.config.imgurl+fl+'/'+emg.name+'" />'
+        this.textarea=txt
+    },
+    divfou(){
+        console.log(123)
+    },
+    divblur(e){
+        console.log(e)
+        this.textarea=e.target.innerHTML
     }
   }
 }
