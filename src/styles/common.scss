@@ -119,6 +119,7 @@ $heightp-list:10,20,25,30,35,40,50,65,100;
 }
 /*margin*/
 .padding-all{padding: 3%;}
+.padding-all-5x{padding: 5px;}
 .padding-all-10x{padding: 10px;}
 .padding-all-15x{padding: 15px;}
 $breakpoint-map: (
@@ -306,8 +307,9 @@ $align-self: auto,flex-start,flex-end,center,baseline,stretch;
   color: #bbbbbb;
   text-decoration: none;
 }
-
-
+.detailContent{width: 100%}
+.detailContent div{width: 100%!important}
+.detailContent img{width: 100%}
 /* box1 */
 .box{
 	width: 100%;

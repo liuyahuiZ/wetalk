@@ -3,7 +3,7 @@
     <teheader :totitle='totitle' :fromtitle='fromtitle' :showbar='showBar' :name="transitionName"></teheader>
     <div class="page-content">
     <transition  :name="transitionName" :mode="transModule" >
-      <keep-alive>
+      <keep-alive exclude="Com">
       <router-view class="view"></router-view>
       </keep-alive>
     </transition>
