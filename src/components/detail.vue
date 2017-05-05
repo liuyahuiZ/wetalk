@@ -11,10 +11,10 @@
       </div>
       <div class="box-flex width-80 margin-auto margin-top-2 flex-direction-column flex-justify-center flex-items-center">
         <div class="box-flex width-100 flex-direction-row">
-          <div class="box-flex flex-1">
+          <div class="box-flex flex-1 padding-all-5x">
             <span>Mr.AndSen</span>
           </div>
-          <div class="box-flex flex-6 width-100">
+          <div class="box-flex flex-6 width-100 padding-all-5x">
             <el-input type="textarea" :rows="2" placeholder="写下你的评论" v-model="textarea"></el-input>
           </div>
         </div>
@@ -41,6 +41,7 @@ Vue.filter('time', function (value) {
         return new Date(parseInt(value)).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
 })
 export default {
+  name: 'Com',
   data () {
     return {
       config: configs.config,

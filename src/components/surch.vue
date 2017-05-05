@@ -1,21 +1,25 @@
 <template>
-    <div>
-    <div class="tirtles bg-e9f5fa padding-all relative overflow-hide">
-          <div class="list-cell" v-bind:class="{ unsurch: !focusStatus, surch: focusStatus }" @click="focus()">
-          <i class="mintui mintui-search float-left line-height-42"></i>
-          <input class="input-all tirtles-left" v-bind:class="{ unfocus: !focusStatus, focus: focusStatus }"
-             v-model="question" type="text" step="20" placeholder="搜索">
-          </div>
-          <span class="absolute line-height-42 right-d-5" v-bind:class="{ uncancle: !focusStatus, cancle: focusStatus }"  @click="blurs()">取消</span>
-    </div>
-    <div @click="blurs()" class="tirtles margin-top-2 padding-all" id="watch-example">
+    <div id="surch">
+      <div class="page-header-main">
+        <div class="box-flex  margin-auto margin-top-2 bg-e9f5fa padding-all relative overflow-hide">
+              <div class="box-flex surchip" v-bind:class="{ unsurch: !focusStatus, surch: focusStatus }" @click="focus()">
+              <i class="mintui mintui-search float-left line-height-42"></i>
+              <input class="input-all tirtles-left" v-bind:class="{ unfocus: !focusStatus, focus: focusStatus }"
+                v-model="question" type="text" step="20" placeholder="搜索">
+              </div>
+              <span class="absolute line-height-42 canclebtn" v-bind:class="{ uncancle: !focusStatus, cancle: focusStatus }"  @click="blurs()">取消</span>
+        </div>
+        <div @click="blurs()" class="tirtles margin-top-2 padding-all" id="watch-example">
           <p>{{ answer }}</p>
         </div>
+      </div>
     </div>
 </template>
 <script>
 import _ from 'lodash'
 import axios from 'axios'
+import Service from '@/util/service'
+import configs from '@/util/configs'
 export default {
   data () {
     return {
@@ -30,8 +34,12 @@ export default {
     // 如果 question 发生改变，这个函数就会运行
     question: function (newQuestion) {
       this.answer = 'Waiting for you to stop typing...'
-      this.getAnswer()
+      this.getAm()
     }
+  },
+  created: function () {
+    console.log('beforeCreate is triggered.')
+    
   },
   methods: {
     focus: function () {
@@ -61,7 +69,19 @@ export default {
       },
       // 这是我们为用户停止输入等待的毫秒数
       500
-    )
+    ),
+    getAm: function () {
+      let self = this
+      let reqbody={}
+      Service.Get('ArticleLst',reqbody)
+      .then(data => {
+          console.log(data,data.data)
+      })
+      .catch(error => console.log(error))
+      .finally(function () {
+        console.log('finally')
+      });
+    }
   }
 }
 </script>
@@ -92,4 +112,8 @@ export default {
     right: 10px;
     transition: all .5s ease;
 }
+.canclebtn{
+
+}
+.surchip input:focus{background: #fff;	border: none;}
 </style>

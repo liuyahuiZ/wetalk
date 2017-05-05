@@ -3,7 +3,9 @@
     <teheader :totitle='totitle' :fromtitle='fromtitle' :showbar='showBar' :name="transitionName"></teheader>
     <div class="page-content">
     <transition  :name="transitionName" :mode="transModule" >
+      <keep-alive exclude="Com">
       <router-view class="view"></router-view>
+      </keep-alive>
     </transition>
     </div>
     <!--<router-view class="view"></router-view>-->
@@ -88,10 +90,30 @@ export default {
       } else {
         this.showBar = false
       }
+    },
+    randomString (len) {
+      len = len || 32;
+      let $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+      let maxPos = $chars.length;
+      let pwd = '';
+      for (let i = 0; i < len; i++) {
+        pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+      }
+      return pwd;
     }
   },
   created: function () {
     window.addEventListener('scroll', this.handleScroll)
+    let msg = localStorage.getItem("wetalks_user");
+    if(msg){
+      console.log(msg)
+    }else{
+      let tmp_name = (Date.parse(new Date())/1000);
+      let userid = 'wetalksuser-' + tmp_name + '-' + (Math.round(Math.random()*9999));
+      let username = this.randomString(5) 
+      localStorage.setItem("wetalks_user",username);
+      localStorage.setItem("wetalks_user_id",userid);
+    }
   },
   components: {
     teheader

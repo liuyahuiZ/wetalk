@@ -3,7 +3,7 @@ $DirectionList:top,left,right,bottom;
 a{text-decoration: none;color:#333;}
 a:link, a:visited{text-decoration: none;border:0;}
 /*font-size*/
-$font-size-list:7,8,9,10,12,16,20,22,26,30,40,50;
+$font-size-list:7,8,9,10,12,16,18,20,22,26,30,40,50;
 @each $fonts in $font-size-list{
 	.font-size-#{$fonts}{font-size:#{$fonts*10%};}
 }
@@ -118,6 +118,10 @@ $heightp-list:10,20,25,30,35,40,50,65,100;
 	.heightp-#{$heightp}{height:#{$heightp*1%};}
 }
 /*margin*/
+.padding-all{padding: 3%;}
+.padding-all-5x{padding: 5px;}
+.padding-all-10x{padding: 10px;}
+.padding-all-15x{padding: 15px;}
 $breakpoint-map: (
     left-1: (p: left,v:1%),left-3: (p: left, v:3%), left-5: (p: left,v:5%),left-d-5: (p: left,v:5px),left-10: (p: left,v:10%),left-20x: (p: left,v:20px),left-30x: (p: left,v:30px),
     top-1: (p: top,v:1%),top-2: (p: top, v:3%), top-5: (p: top,v:5%),top-5x: (p: top,v:5px),top-10: (p: top,v:10%),top-d-10:(p: top,v:-10px),top-60x:(p: top,v:60px),top-120x:(p: top,v:120px),top-300x:(p: top,v:300px),
@@ -140,9 +144,6 @@ $breakpoint-map: (
            #{ map-get($map, p)} : map-get($map, v);
         }
 }
-.padding-all{padding: 3%;}
-.padding-all-10x{padding: 10px;}
-.padding-all-15x{padding: 15px;}
 .nopadding{padding: 0;}
 /*position_absolute*/
 .absolute{position: absolute;}
@@ -306,8 +307,9 @@ $align-self: auto,flex-start,flex-end,center,baseline,stretch;
   color: #bbbbbb;
   text-decoration: none;
 }
-
-
+.detailContent{width: 100%}
+.detailContent div{width: 100%!important}
+.detailContent img{width: 100%}
 /* box1 */
 .box{
 	width: 100%;

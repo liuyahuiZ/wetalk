@@ -8,6 +8,8 @@ import pictures from '@/components/pictures.vue'
 import Home from '@/components/Home.vue'
 import myshill from '@/components/myshill.vue'
 import detail from '@/components/detail.vue'
+import surch from '@/components/surch.vue'
+import chat from '@/components/chat.vue'
 
 Vue.use(Router)
 
@@ -52,6 +54,16 @@ export default new Router({
       path: '/pictures',
       name: 'pictures',
       component: pictures
+    },
+    {
+      path: '/surch',
+      name: 'surch',
+      component: surch
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: chat
     }
   ]
 })
