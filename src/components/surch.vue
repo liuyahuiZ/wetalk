@@ -18,6 +18,8 @@
 <script>
 import _ from 'lodash'
 import axios from 'axios'
+import Service from '@/util/service'
+import configs from '@/util/configs'
 export default {
   data () {
     return {
@@ -32,8 +34,12 @@ export default {
     // 如果 question 发生改变，这个函数就会运行
     question: function (newQuestion) {
       this.answer = 'Waiting for you to stop typing...'
-      this.getAnswer()
+      this.getAm()
     }
+  },
+  created: function () {
+    console.log('beforeCreate is triggered.')
+    
   },
   methods: {
     focus: function () {
@@ -63,7 +69,19 @@ export default {
       },
       // 这是我们为用户停止输入等待的毫秒数
       500
-    )
+    ),
+    getAm: function () {
+      let self = this
+      let reqbody={}
+      Service.Get('ArticleLst',reqbody)
+      .then(data => {
+          console.log(data,data.data)
+      })
+      .catch(error => console.log(error))
+      .finally(function () {
+        console.log('finally')
+      });
+    }
   }
 }
 </script>

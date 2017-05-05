@@ -20,14 +20,14 @@
                 <span >{{nowUser.username}}</span>
             </div>
             <div class="box-flex width-100 flex-direction-row">
-                <div class="box-flex flex-7 width-100 padding-all chat">
+                <div class="box-flex flex-9 width-100 padding-all chat">
                     <div style="width:100%;border:1px solid #666;border-radius:5px;" v-html="textarea" @focus="divfou" @blur="divblur($event)" tabindex='-1' contenteditable="true"></div>
                     <!--<el-input type="textarea" :rows="2" placeholder="your message" v-model="textarea"></el-input>-->
                 </div>
-                <div class="box-flex flex-1 width-100 padding-all chat">
+                <div class="box-flex flex-1 width-100 padding-all chat flex-justify-center flex-items-center">
                     <span class="ion-android-happy font-size-18" v-popover:popover4></span>
                 </div>
-                <div class="box-flex flex-1  flex-items-flex-end flex-justify-center margin-bottom-3">
+                <div class="box-flex flex-2  flex-items-flex-end flex-justify-center margin-bottom-3">
                     <el-button type="primary" @click="doCommit" >发送</el-button>
                 </div>
             </div>
@@ -162,10 +162,13 @@ section.user>div {
   text-align:left;
   border-radius:10px;
   color:#fff;
-  box-shadow: inset 0 0 1px #007aff;
+  /*box-shadow: inset 0 0 1px #007aff;*/
   background-color:#007aff;
   vertical-align: top;
   word-break: break-all;
+  background: -webkit-linear-gradient(#FFA582,#E58C7C,#FF6157);
+  background: linear-gradient(125deg,#FFA582,#E58C7C,#FF6157);
+  box-shadow:2px 2px 6px #FF6157;
 }
 
 section.service {
@@ -182,7 +185,9 @@ section.service>div {
   text-align:left;
   border-radius:10px;
   color:#000;
-  box-shadow: inset 0 0 1px #F6F6F6;
+  /*box-shadow: inset 0 0 1px #F6F6F6;*/
+  border: 1px solid #ddd;
+  box-shadow:2px 2px 9px #eee;
   background-color:#F6F6F6;
   vertical-align: top;
   word-break: break-all;
