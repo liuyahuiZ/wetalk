@@ -138,6 +138,7 @@
         <div class="line-height-30 tirtleFont textclolor-black-low">© 2015 All rights reserved. Design and development by Liu Yahui</div>
         <div class="line-height-30 iconFont textclolor-white ">Projects made with </div>
         <mylink></mylink>
+        <div class="line-height-30 iconFont textclolor-white ">访问次数: {{visitor}} </div>
     </div>
 </div>
 </template>
@@ -158,6 +159,7 @@ export default {
       HomeArticle: [],
       userInfo: {},
       config: configs.config,
+      visitor:0
     }
   },
   watch: {
@@ -188,8 +190,17 @@ export default {
       }
       Service.Post('finduser',reqbbody)
       .then(data => {
-          console.log(data,data.data)
+          // console.log(data,data.data)
           this.userInfo=data.data[0]
+      })
+      .catch(error => console.log(error))
+
+      let reqcbody={
+      }
+      Service.Post('dataStatiList',reqcbody)
+      .then(data => {
+        this.visitor=data.data.length
+          console.log(data.data.length)
       })
       .catch(error => console.log(error))
   },
