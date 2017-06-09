@@ -23,7 +23,7 @@
           <el-button type="primary" @click="doCommit" >发送</el-button>
         </div>
       </div>
-
+      <div class="box-flex width-80 margin-auto margin-top-2 border-top border-color-bfbfbf"></div>
       <div class="box-flex width-80 margin-auto margin-top-2 margin-bottom-3 flex-direction-column flex-justify-center flex-items-center" v-for="(n,index) in article.comment">
           <div class="width-100">{{n.user}} 回复 {{n.repayuser}}  {{n.createTime| time}}</div>
           <div class="width-100">{{n.content}}</div>

@@ -40,7 +40,7 @@
         </router-link>
         <router-link to="/workList">
           <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
-              My Work
+              My Works
           </li>
         </router-link>
         <router-link to="/myshill">
@@ -50,7 +50,7 @@
         </router-link>
         <router-link to="/articleList">
         <li class="line-height-50 text-align-center font-size-20 textclolor-white" @click="closeBottomSheet">
-              My Blog
+              My Blogs
         </li>
         </router-link>
         <router-link to="/chat">
