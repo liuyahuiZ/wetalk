@@ -197,10 +197,10 @@ export default {
 
       let reqcbody={
       }
-      Service.Post('dataStatiList',reqcbody)
+      Service.Post('dataStatiCount',reqcbody)
       .then(data => {
-        this.visitor=data.data.length
-          console.log(data.data.length)
+        this.visitor=data.data
+          console.log(data.data)
       })
       .catch(error => console.log(error))
   },
