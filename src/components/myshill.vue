@@ -53,20 +53,20 @@ export default {
 		}
   },
   beforeCreate: function () {
-    console.log('beforeCreate is triggered.')
+    // console.log('beforeCreate is triggered.')
     let reqbody={
       }
       Service.Post('dataStatiList',reqbody)
       .then(data => {
 		  this.datelist=data.data
-          console.log(data,data.data)
+          // console.log(data,data.data)
 		  let date=getDate('bz_wek')
 		let imcomelist=[]
 		// console.log(date)
 		for(var j=0;j<date.length;j++){
 		imcomelist[j]=this.getcom(this.datelist,date[j]);
 		}
-		console.log(imcomelist)
+		// console.log(imcomelist)
 		this.workdate=imcomelist
       })
       .catch(error => console.log(error))
@@ -74,8 +74,8 @@ export default {
   created: function(){
   },
   updated:function(){
-	console.log('updated');
-	console.log('work',this.workdate)
+	// console.log('updated');
+	// console.log('work',this.workdate)
 	var line = echarts.init(document.getElementById('line'));
 	var optione2={
 					title: {

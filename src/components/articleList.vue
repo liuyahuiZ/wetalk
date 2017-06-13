@@ -66,8 +66,8 @@ export default {
     }
   },
   created: function () {
-    console.log(configs,configs.config.api)
-    console.log('beforeCreate is triggered.')
+    // console.log(configs,configs.config.api)
+    // console.log('beforeCreate is triggered.')
     const self = this
     let reqbody={
       "pageNum":this.pageIndex,
@@ -83,8 +83,8 @@ export default {
     .catch(error => console.log(error))
 
     comE.$on('id-selected', function(id){
-      console.log(id)
-      console.log('on id-selected , brother comment call')
+      // console.log(id)
+      // console.log('on id-selected , brother comment call')
     })
   },
   components: {
@@ -141,14 +141,14 @@ export default {
         this.dragging = false
         this.rotate = false
         var o = this
-        console.log(o.deny)
+        // console.log(o.deny)
         if (o.deny > 0) {
           if (o.deny > o.limitHight) {
             o.refresh = true // 显示loading
             o.rebacload(o)
             // 获取数据
             this.getdate(o).then(function (result) {
-              console.log(result)
+              // console.log(result)
               o.refresh = false
               o.rebac(o)
             })
@@ -161,7 +161,7 @@ export default {
             o.moreload(o)
             // 获取数据
             this.getMoredate(o).then(function (result) {
-              console.log(result)
+              // console.log(result)
               o.showloading = false
               o.rebac(o)
             })

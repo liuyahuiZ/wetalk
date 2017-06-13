@@ -65,13 +65,13 @@ export default {
 			//监听新用户登录
             let self=this
 			this.socket.on('login', function(o){
-				console.log(o)	
+				// console.log(o)	
                 self.updateSystom(o,'login')
 			});
 			
 			//监听用户退出
 			this.socket.on('logout', function(o){
-				console.log(o)	
+				// console.log(o)	
                 self.updateSystom(o,'logout')
 			});
   },
@@ -128,11 +128,11 @@ export default {
         window.scrollTo(0, document.getElementById("message").clientHeight);
     },
     handleClick(tab, event) {
-        console.log(tab, event);
+        // console.log(tab, event);
     },
     getEmoje(emg,fl){
-        console.log(emg,fl)
-        console.log(this.textarea)
+        // console.log(emg,fl)
+        // console.log(this.textarea)
         var txt=this.textarea+'<img style="height:25px;width:25px;" src="'+this.config.imgurl+fl+'/'+emg.name+'" />'
         this.textarea=txt
     },
@@ -140,7 +140,7 @@ export default {
         console.log(123)
     },
     divblur(e){
-        console.log(e)
+        // console.log(e)
         this.textarea=e.target.innerHTML
     }
   }
