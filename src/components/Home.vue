@@ -165,7 +165,7 @@ export default {
   watch: {
   },
   beforeCreate: function () {
-      console.log('beforeCreate is triggered.')
+      //console.log('beforeCreate is triggered.')
       let reqbody={
         "typecode" : "HomeBanner"
       }
@@ -206,8 +206,9 @@ export default {
   },
   created: function(){
     let msg = localStorage.getItem("wetalks_user");
+    console.log('求一份上海浦东，端茶倒水洗衣扫地的前端开发工作~：）')
     if(msg){
-      console.log(msg)
+      //console.log(msg)
       this.dataSati()
     }else{
       let tmp_name = (Date.parse(new Date())/1000);
@@ -230,7 +231,7 @@ export default {
       this.bottomSheet = true
     },
     handleSelect (key, keyPath) {
-      console.log(key, keyPath)
+      //console.log(key, keyPath)
     },
     dataSati () {
       let reqbody={
@@ -238,7 +239,7 @@ export default {
       }
       Service.Post('dataStati',reqbody)
       .then(data => {
-          console.log(data,data.data)
+         // console.log(data,data.data)
       })
     },
     randomString (len) {

@@ -70,7 +70,7 @@ export default {
     teheader
   },
   created: function () {
-    console.log('beforeCreate is triggered.')
+    // console.log('beforeCreate is triggered.')
     const self = this
     let reqbody={
       "pageNum":this.pageIndex,
@@ -78,7 +78,7 @@ export default {
     }
     Service.Post('PictureList',reqbody)
     .then(data => {
-        console.log(data,data.data)
+        // console.log(data,data.data)
         self.pageIndex = data.page.pageIndex
         self.allPage = data.page.allpage
         for(var i=0;i<data.data.length;i++){
@@ -142,14 +142,14 @@ export default {
         this.dragging = false
         this.rotate = false
         var o = this
-        console.log(o.deny)
+        // console.log(o.deny)
         if (o.deny > 0) {
           if (o.deny > o.limitHight) {
             o.refresh = true // 显示loading
             o.rebacload(o)
             // 获取数据
             this.getdate(o).then(function (result) {
-              console.log(result)
+              // console.log(result)
               o.refresh = false
               o.rebac(o)
             })
@@ -162,7 +162,7 @@ export default {
             o.moreload(o)
             // 获取数据
             this.loadMoreDate(o).then(function (result) {
-              console.log(result)
+              // console.log(result)
               o.showloading = false
               o.rebac(o)
             })
